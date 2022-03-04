@@ -187,7 +187,7 @@ function_names = [
     {
         "name": "PWM", 
         "description": "Pulse Width Modulation",
-        "detailed_description": "",
+        "detailed_description": ""
     },
     {
         "name": "PCM", 
@@ -211,6 +211,10 @@ function_names = [
         "name": "HDMI", 
         "description": "High Definition Multimedia Interface",
         "detailed_description": "",
+        "controllers": [
+            { "name": "0" },
+            { "name": "1" }
+        ]
     },
     {
         "name": "TV", 
@@ -227,12 +231,20 @@ function_names = [
         "name": "DSI", 
         "description": "Display Serial Interface",
         "detailed_description": "Serial interface for controlling LCD displays (like the <a href='https://www.raspberrypi.com/documentation/accessories/display.html'>official Touch display</a>).",
+        "controllers": [
+            { "name": "0" },
+            { "name": "1" }
+        ]
     },
     
     {
         "name": "CSI", 
         "description": "Camera Serial Interface",
         "detailed_description": "",
+        "controllers": [
+            { "name": "0" },
+            { "name": "1" }
+        ]
     },
     {
         "name": "Reserved", 
@@ -476,7 +488,8 @@ pinout = {
                         {
                             "name": "PWM0_1",
                             "description": "PWM0 Channel 0",
-                            "class": "pwm"
+                            "class": "pwm",
+                            "controller_id": "0"
                         }
                     ]
                 },
@@ -528,7 +541,8 @@ pinout = {
                         {
                             "name": "PWM0_1",
                             "description": "PWM 0 Channel 1",
-                            "class": "pwm"
+                            "class": "pwm",
+                            "controller_id": "0"
                         },
                         {
                             "name": "SD5",
@@ -649,7 +663,8 @@ pinout = {
                         {
                             "name": "PWM0_0",
                             "description": "PWM0 Channel 0",
-                            "class": "pwm"
+                            "class": "pwm",
+                            "controller_id": "0"
                         },
                         {
                             "name": "SD4",
@@ -1266,7 +1281,8 @@ pinout = {
                         {
                             "name": "PWM0_0",
                             "description": "PWM0 Channel 0",
-                            "class": "pwm"
+                            "class": "pwm",
+                            "controller_id": "0"
                         }
                     ]
                 },
@@ -1660,7 +1676,8 @@ pinout = {
                         {
                             "name": "PWM0_1",
                             "description": "PWM0 Channel 1",
-                            "class": "pwm"
+                            "class": "pwm",
+                            "controller_id": "0"
                         },
                         {
                             "name": "SCL0",
@@ -1919,7 +1936,8 @@ pinout = {
                 { // pin 115
                     "name": "CAM1_D0_N",
                     "description": "Input Camera1 D0 Negative",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 116
                     "name": "PCIe_RX_P",
@@ -1929,7 +1947,8 @@ pinout = {
                 { // pin 117
                     "name": "CAM1_D0_P",
                     "description": "Input Camera1 D0 Positive",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 118
                     "name": "PCIe_RX_N",
@@ -1949,7 +1968,8 @@ pinout = {
                 { // pin 121
                     "name": "CAM1_D1_N",
                     "description": "Input Camera1 D1 Negative",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 122
                     "name": "PCIe_TX_P",
@@ -1959,7 +1979,8 @@ pinout = {
                 { // pin 123
                     "name": "CAM1_D1_P",
                     "description": "Input Camera1 D1 Positive",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 124
                     "name": "PCIe_TX_N",
@@ -1979,22 +2000,26 @@ pinout = {
                 { // pin 127
                     "name": "CAM1_C_N",
                     "description": "Input Camera1 Clock Negative",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 128
                     "name": "CAM0_D0_N",
                     "description": "Input Camera0 D0 Negative",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "0"
                 },
                 { // pin 129
                     "name": "CAM1_C_P",
                     "description": "Input Camera1 Clock Positive",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 130
                     "name": "CAM0_D0_P",
                     "description": "Input Camera0 D0 Positive",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "0"
                 },
                 { // pin 131
                     "name": "GND",
@@ -2009,22 +2034,26 @@ pinout = {
                 { // pin 133
                     "name": "CAM1_D2_N",
                     "description": "Input Camera1 D2 Negative",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 134
                     "name": "CAM0_D1_N",
                     "description": "Input Camera0 D1 Negative",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "0"
                 },
                 { // pin 135
                     "name": "CAM1_D2_P",
                     "description": "Input Camera1 D2 Positive",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 136
                     "name": "CAM0_D1_P",
                     "description": "Input Camera0 D1 Positive",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "0"
                 },
                 { // pin 137
                     "name": "GND",
@@ -2039,27 +2068,32 @@ pinout = {
                 { // pin 139
                     "name": "CAM1_D3_N",
                     "description": "Input Camera1 D3 Negative",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 140
                     "name": "CAM0_C_N",
                     "description": "Input Camera0 Clock Negative",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "0"
                 },
                 { // pin 141
                     "name": "CAM1_D3_P",
                     "description": "Input Camera1 D3 Positive",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "1"
                 },
                 { // pin 142
                     "name": "CAM0_C_P",
                     "description": "Input Camera0 Clock Positive",
-                    "class": "csi"
+                    "class": "csi",
+                    "controller_id": "0"
                 },
                 { // pin 143
                     "name": "HDMI1_HOTPLUG",
                     "description": "Input HDMI1 Hotplug Internally pulled down with a 100K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM4 by an on board HDMI05-CL02F3)",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 144
                     "name": "GND",
@@ -2069,27 +2103,32 @@ pinout = {
                 { // pin 145
                     "name": "HDMI1_SDA",
                     "description": "Bidir HDMI1 SDA Internally pulled up with a 1.8K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM4 by an on board HDMI05-CL02F3)",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 146
-                    "name": "HDMI_TX2_P",
-                    "description": "Output HDMI TX2 Positive",
-                    "class": "hdmi"
+                    "name": "HDMI1_TX2_P",
+                    "description": "Output HDMI1 TX2 Positive",
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 147
                     "name": "HDMI1_SCL",
                     "description": "Bidir HDMI1 SCL Internally pulled up with a 1.8K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM4 by an on board HDMI05-CL02F3)",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 148
-                    "name": "HDMI_TX2_N",
-                    "description": "Output HDMI TX2 Negative",
-                    "class": "hdmi"
+                    "name": "HDMI1_TX2_N",
+                    "description": "Output HDMI1 TX2 Negative",
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 149
                     "name": "HDMI1_CEC",
                     "description": "Input HDMI1 CEC Internally pulled up with a 27K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM4 by an on board HDMI05-CL02F3)",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 150
                     "name": "GND",
@@ -2099,22 +2138,26 @@ pinout = {
                 { // pin 151
                     "name": "HDMI0_CEC",
                     "description": "Input HDMI0 CEC Internally pulled up with a 27K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM4 by an on board HDMI05-CL02F3)",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 152
                     "name": "HDMI1_TX1_P",
                     "description": "Output HDMI1 TX1 Positive",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 153
                     "name": "HDMI0_HOTPLUG",
                     "description": "Input HDMI0 Hotplug Internally pulled down with a 100K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM4 by an on board HDMI05-CL02F3)",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 154
                     "name": "HDMI1_TX1_N",
                     "description": "Output HDMI1 TX1 Negative",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 155
                     "name": "GND",
@@ -2129,22 +2172,26 @@ pinout = {
                 { // pin 157
                     "name": "DSI0_D0_N",
                     "description": "Output Display0 D0 Negative",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "0"
                 },
                 { // pin 158
                     "name": "HDMI1_TX0_P",
                     "description": "Output HDMI1 TX0 Positive",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 159
                     "name": "DSI0_D0_P",
                     "description": "Output Display0 D0 Positive",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "0"
                 },
                 { // pin 160
                     "name": "HDMI1_TX0_N",
                     "description": "Output HDMI1 TX0 Negative",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 161
                     "name": "GND",
@@ -2159,22 +2206,26 @@ pinout = {
                 { // pin 163
                     "name": "DSI0_D1_N",
                     "description": "Output Display0 D1 Negative",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "0"
                 },
                 { // pin 164
                     "name": "HDMI1_CLK_P",
                     "description": "Output HDMI1 Clock Positive",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 165
                     "name": "DSI0_D1_P",
                     "description": "Output Display0 D1 Positive",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "0"
                 },
                 { // pin 166
                     "name": "HDMI1_CLK_N",
                     "description": "Output HDMI1 Clock Negative",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "1"
                 },
                 { // pin 167
                     "name": "GND",
@@ -2189,22 +2240,26 @@ pinout = {
                 { // pin 169
                     "name": "DSI0_C_N",
                     "description": "Output Display0 Clock Negative",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "0"
                 },
                 { // pin 170
                     "name": "HDMI0_TX2_P",
                     "description": "Output HDMI0 TX2 Positive",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 171
                     "name": "DSI0_C_P",
                     "description": "Output Display0 Clock Positive",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "0"
                 },
                 { // pin 172
                     "name": "HDMI0_TX2_N",
                     "description": "Output HDMI0 TX2 Negative",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 173
                     "name": "GND",
@@ -2219,22 +2274,26 @@ pinout = {
                 { // pin 175
                     "name": "DSI1_D0_N",
                     "description": "Output Display1 D0 Negative",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 176
                     "name": "HDMI0_TX1_P",
                     "description": "Output HDMI0 TX1 Positive",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 177
                     "name": "DSI1_D0_P",
                     "description": "Output Display1 D0 Positive",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 178
                     "name": "HDMI0_TX1_N",
                     "description": "Output HDMI0 TX1 Negative",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 179
                     "name": "GND",
@@ -2249,22 +2308,26 @@ pinout = {
                 { // pin 181
                     "name": "DSI1_D1_N",
                     "description": "Output Display1 D1 Negative",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 182
                     "name": "HDMI0_TX0_P",
                     "description": "Output HDMI0 TX0 Positive",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 183
                     "name": "DSI1_D1_P",
                     "description": "Output Display1 D1 Positive",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 184
                     "name": "HDMI0_TX0_N",
                     "description": "Output HDMI0 TX0 Negative",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 185
                     "name": "GND",
@@ -2279,22 +2342,26 @@ pinout = {
                 { // pin 187
                     "name": "DSI1_C_N",
                     "description": "Output Display1 Clock Negative",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 188
                     "name": "HDMI0_CLK_P",
                     "description": "Output HDMI0 Clock Positive",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 189
                     "name": "DSI1_C_P",
                     "description": "Output Display1 Clock Positive",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 190
                     "name": "HDMI0_CLK_N",
                     "description": "Output HDMI0 Clock Negative",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 191
                     "name": "GND",
@@ -2309,22 +2376,26 @@ pinout = {
                 { // pin 193
                     "name": "DSI1_D2_N",
                     "description": "Output Display1 D2 Negative",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 194
                     "name": "DSI1_D3_N",
                     "description": "Output Display1 D3 Negative",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 195
                     "name": "DSI1_D2_P",
                     "description": "Output Display1 D2 Positive",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 196
                     "name": "DSI1_D3_P",
                     "description": "Output Display1 D3 Positive",
-                    "class": "dsi"
+                    "class": "dsi",
+                    "controller_id": "1"
                 },
                 { // pin 197
                     "name": "GND",
@@ -2339,12 +2410,14 @@ pinout = {
                 { // pin 199
                     "name": "HDMI0_SDA",
                     "description": "Bidir HDMI0 SDA Internally pulled up with a 1.8K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM4 by an on board HDMI05-CL02F3)",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 { // pin 200
-                    "name": "HDMI1_SCL",
+                    "name": "HDMI0_SCL",
                     "description": "Bidir HDMI0 SCL Internally pulled up with a 1.8K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM4 by an on board HDMI05-CL02F3)",
-                    "class": "hdmi"
+                    "class": "hdmi",
+                    "controller_id": "0"
                 },
                 
                 
