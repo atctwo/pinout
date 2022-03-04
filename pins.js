@@ -1915,7 +1915,7 @@ pinout = {
                 },
                 { // pin 111
                     "name": "VDAC_COMP",
-                    "description": "Video DAC output (TV OUT)",
+                    "description": "Analogue Video DAC output (TV OUT)",
                     "class": "tv"
                 },
                 { // pin 112
