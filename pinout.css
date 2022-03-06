@@ -18,27 +18,83 @@ body { margin: 0; padding: 0; }
     display: table;
 }
 
+
+
+
+
+
+#title-bar {
+    width: 100%;
+    height: 40px;
+    margin-top: 0;
+
+    color: white;
+    background-color: #009052;
+    text-align: center;
+    line-height: 40px;
+}
+
+#sidebar-toggle {
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    background-color: transparent;
+
+    width: 32px;
+    height: 32px;
+
+    position: absolute;
+    top: 3px;
+    left: 5px;
+}
+#sidebar-toggle:hover {
+    border-color: lightgray;
+}
+
+
+#pinout-container {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    justify-content: flex-start;
+    width: 100%;
+    height: calc(100% - 40px);
+}
+
 .table-container {
+
+    height: 100%;
+    overflow-y: scroll;
+
+    /* flex stuff for children */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
-    width: calc(100% - 300px);
-    height: 100%;
-    margin: 0px;
-    margin-left: 300px; /* based on width of sidebar */
+
+    /* flex stuff for self */
+    flex: 1;
 }
 
 #sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 300px;
+    width: 20%;
     height: 100%;
-    border-right: 1px solid black;
+    /* border-right: 1px solid black; */
     text-align: center;
     padding: 5px;
     overflow-y: scroll;
+    position: sticky;
+}
+
+@media screen and (max-width: 900px) {
+    #sidebar {
+        display: none;
+        width: 350px;
+    }
+
+    .table-container {
+        justify-content: space-between;
+    }
 }
 
 .pin-header {
@@ -83,9 +139,9 @@ table {
     display: none;
 }
 
-h2 {
+/* h2 {
     margin: 2px;
-}
+} */
 
 
 
@@ -103,9 +159,20 @@ h2 {
     text-align: left;
 }
 
+#alt-function-container {
+    display: none;
+}
+
+#alt-function-table {
+    width: 90%;
+    margin: auto;
+}
 
 
 
+*[class^="pin-class-"], *[class*=" pin-class-"] {
+    cursor: pointer;
+}
 
 .pin-name:hover {
     filter: brightness(150%);

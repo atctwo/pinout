@@ -6,56 +6,75 @@
     </head>
     
     <body>
-        
-        <div id="sidebar">
-            <h2>Raspberry Pi CM4 Pinout</h2><br>
-            
-            <!-- function filter table -->
-            <table id="function-filter">
-                <tr>
-                    <td id="function-filter-title"><b>Filter by function</b></td>
-                </tr>
-            </table><br>
-            
-            <!-- peripheral controller filter table -->
-            <div id="controller-filter-container">
-                <table id="controller-filter">
+
+        <div id="title-bar">
+            <button onclick="toggleSidebar();" id="sidebar-toggle">☰</button>
+            <h3>Raspberry Pi CM4 Pinout</h3>
+        </div>
+
+        <div id="pinout-container">
+
+            <div id="sidebar">
+                
+                <!-- function filter table -->
+                <table id="function-filter">
                     <tr>
-                        <td id="controller-filter-title"><b>Filter by controller</b></td>
+                        <td id="function-filter-title"><b>Filter by function</b></td>
                     </tr>
                 </table><br>
+                
+                <!-- peripheral controller filter table -->
+                <div id="controller-filter-container">
+                    <table id="controller-filter">
+                        <tr>
+                            <td id="controller-filter-title"><b>Filter by controller</b></td>
+                        </tr>
+                    </table><br>
+                </div>
+                
+                <!-- signal search -->
+                <input id="signal-search" placeholder="Search for signal">&nbsp;<button id="signal-search-btn" onclick="signalSearch();">Go</button>
+                <br><br>
+                
+                <!-- selected pin details -->
+                <div id="selected-pin-details">
+                    
+                    <h2 id="selected-pin-name"></h2>
+                    <p id="selected-pin-description">Click on a pin to see details about it, or click on one of the functions above to see which pins support it.</p>
+                
+                    <div id="alt-function-container">
+                        <h3 id="alt-function-title">Alternate Functions</h3>
+                        <table id="alt-function-table">
+                            <tr>
+                                <td></td>
+                                <td><b>Signal</b></td>
+                                <td><b>Description</b></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <br>
+                    <h2>About</h2>
+                    <p>
+                        Created by atctwo in 2022 :)
+                        <br>
+                        Sources used:
+                        <ul>
+                            <li><a href="https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf">CM4 Datasheet</a></li>
+                            <li><a href="https://elinux.org/RPi_BCM2711_GPIOs">eLinux.org BCM2711 GPIO Reference</a></li>
+                        </ul>
+                        <br>
+                        If you see an error, or have any other suggestions, raise an issue on <a href="https://github.com/atctwo/pinout">GitHub</a>!
+                    </p>
+                    
+                </div>
             </div>
             
-            <!-- signal search -->
-            <input id="signal-search" placeholder="Search for signal">&nbsp;<button id="signal-search-btn" onclick="signalSearch();">Go</button>
-            <br><br>
-            
-            <!-- selected pin details -->
-            <div id="selected-pin-details">
-                
-                <h2 id="selected-pin-name"></h2>
-                <p id="selected-pin-description">Click on a pin to see details about it, or click on one of the functions above to see which pins support it.</p>
-            
-                <br>
-                <h2>About</h2>
-                <p>
-                    Created by atctwo in 2022 :)
-                    <br>
-                    Sources used:
-                    <ul>
-                        <li><a href="https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf">CM4 Datasheet</a></li>
-                        <li><a href="https://elinux.org/RPi_BCM2711_GPIOs">eLinux.org BCM2711 GPIO Reference</a></li>
-                    </ul>
-                    <br>
-                    If you see an error, or have any other suggestions, raise an issue on <a href="https://github.com/atctwo/pinout">GitHub</a>!
-                </p>
-                
+            <div class="table-container">
+                <table class="pin-header" id="pin-header-1"></table>
+                <table class="pin-header" id="pin-header-0"></table>
             </div>
-        </div>
-        
-        <div class="table-container">
-            <table class="pin-header" id="pin-header-1"></table>
-            <table class="pin-header" id="pin-header-0"></table>
+
         </div>
     </body>
     

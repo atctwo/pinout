@@ -36,7 +36,7 @@ function populatePinHeaderTables()
             pin_left_name.onclick = function(pin_num) {
                 return function() {
                     var pin  = header.pins[pin_num];
-                    showPinInfo(pin.name, pin.description, pin.detailed_description)
+                    showPinInfo(pin.name, pin.description, pin.detailed_description, pin.functions)
                 }
             }(pin_num + 1)
             
@@ -63,7 +63,7 @@ function populatePinHeaderTables()
             pin_right_name.onclick = function(pin_num) {
                 return function() {
                     var pin  = header.pins[pin_num];
-                    showPinInfo(pin.name, pin.description, pin.detailed_description)
+                    showPinInfo(pin.name, pin.description, pin.detailed_description, pin.functions)
                 }
             }(pin_num)
         }
@@ -338,12 +338,46 @@ function showPinFunction(pin_id, function_name, controller_id=null)
     }
 }
 
-function showPinInfo(pin_name, pin_description, pin_detailed_description)
+function showPinInfo(pin_name, pin_description, pin_detailed_description, functions=null)
 {
     document.getElementById("selected-pin-name").innerText = pin_name;
     if (pin_detailed_description) document.getElementById("selected-pin-description").innerHTML = pin_detailed_description;
     else if (pin_description) document.getElementById("selected-pin-description").innerText = pin_description;
     else document.getElementById("selected-pin-description").innerText = "";
+
+    // show alternate functions if present
+    var alt_func_container = document.getElementById("alt-function-container");
+    var alt_func_table = document.getElementById("alt-function-table");
+    if (functions)
+    {
+        // show container
+        alt_func_container.style.display = "block";
+
+        // clear rows
+        while(alt_func_table.rows.length > 1) alt_func_table.deleteRow(-1);
+
+        // add rows
+        functions.forEach((func, func_id) => {
+
+            // add row
+            var func_row = alt_func_table.insertRow(-1);
+            func_row.classList.add("pin-class-" + func.class);
+
+            // id cell
+            var id_cell = func_row.insertCell(-1);
+            id_cell.innerText = func_id;
+
+            // signal name cel
+            var name_cell = func_row.insertCell(-1);
+            name_cell.innerText = func.name;
+
+            // description cell
+            var desc_cell = func_row.insertCell(-1);
+            desc_cell.innerText = func.description;
+
+        })
+    }
+    else alt_func_container.style.display = "none";
 }
 
 function searchForSignal(fuse, pattern)
@@ -400,6 +434,14 @@ function signalSearch()
 
     // perform search
     searchForSignal(pin_fuse, query);
+}
+
+function toggleSidebar()
+{
+    var sidebar = document.getElementById("sidebar");
+
+    if (sidebar.style.display != "none") sidebar.style.display = "none";
+    else sidebar.style.display = "block";
 }
 
 
