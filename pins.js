@@ -1833,7 +1833,7 @@ pinout = {
                     "class": "rpi"
                 },
                 { // pin 96
-                    "name": "AnalogIP1",
+                    "name": "AnalogIP0",
                     "description": "Analogue input of the MXL7704. Typically connected to CC pin of Type C power connector",
                     "class": "rpi"
                 },
