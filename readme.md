@@ -6,7 +6,7 @@ Unlike the classic Pi's 40 pin (2x20) expansion header, the CM4 has two 100 pin 
 
 The 40 pin header has existing resources that explain what each pin does.  One I really like is [pinout.xyz](https://pinout.xyz).  But I haven't found any similar graphical representations for the CM4's combined 200 pins.  This website aims to provide a graphical layout of each pin of the CM4.
 
-A live version of the webpage can be found at [atctwo.co.uk/projects/pinout](https://atctwo.co.uk/projects/pinout).  If you spot any errors with the pinout itself, please raise an issue, and I'll fix it as soon as possible!
+A live version of the webpage can be found at [atctwo.net/projects/pinout](https://atctwo.net/projects/pinout).  If you spot any errors with the pinout itself, please raise an issue, and I'll fix it as soon as possible!
 
 ![Screenshot of the website](screenshot.png)
 
@@ -28,4 +28,4 @@ You can also use the search box to search for a specific signal.  It uses Fuse.j
 - `pinout.js` - the main JS that processes the pin definitions and dynamically populates the pin header and function tables
 - `pins.js` - a JS file that contains a giant JSON object with descriptions of every pin on the CM4 (and another for the function table)
 
-This website is part of atctwo.co.uk, and is included there as a git submodule so it's automatically built along with the main website.
+This website is part of atctwo.net, and is included there as a git submodule so it's automatically built along with the main website.
