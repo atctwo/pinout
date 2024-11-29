@@ -1,74 +1,69 @@
 
 /**
+ * Generate the pin table with the specified number of rows and columns
+ */
+function generatePinTable() {
+
+    var pin_table = document.getElementById("pin-header-0");
+
+    for (row = 0; row < pin_rows; row++) {
+        let tr = pin_table.insertRow(-1);
+        tr.id = "pin-row-" + row;
+        for (col = 0; col < pin_cols; col++) {
+            let td = tr.insertCell(-1);
+            td.id = "pin-cell-" + row + "-" + col;
+        }
+    }
+
+}
+
+/**
  * Populate the 2 pin headers with pins
  */
 function populatePinHeaderTables()
 {
+    // get header table
+    var pin_table = document.getElementById("pin-header-0");
+
+    var pin_id = 0;
+
     // for each header
-    pinout.headers.forEach((header, header_num) => {
-        
-        // get header table
-        var header_table = document.getElementById(header.table_id);
-        
-        // add pins
-        for (var pin_num = 0; pin_num < header.pins.length; pin_num += 2)
-        {
-            // get pin
-            var pin_left  = header.pins[pin_num + 1];
-            var pin_right = header.pins[pin_num];
+    pinout.pins.forEach(pin => {
             
-            var pin_left_number  = pin_num + 2 + (header_num * 100);
-            var pin_right_number = pin_num + 1 + (header_num * 100);
-            
-            // add table row
-            var pin_row = header_table.insertRow(0);
-            
-            
-            // add left pin name
-            var pin_left_name = pin_row.insertCell(0);
+        // if both row and column are specified
+        if ( ("row" in pin) && ("col" in pin) ) {
+
+            // get cell for pin
+            console.log("pin-cell-" + pin.row + "-" + pin.col);
+            let pin_left_name = document.getElementById("pin-cell-" + pin.row + "-" + pin.col);
+
+            // add pin
             pin_left_name.classList.add("pin-name")
-            if ("other_classes" in pin_left) pin_left.other_classes.forEach(c => {
+            if ("other_classes" in pin) pin.other_classes.forEach(c => {
                 pin_left_name.classList.add(c)
             })
-            pin_left_name.id = "pin-" + pin_left_number;
-            showPinFunction(pin_left_number, null);
+            pin_left_name.id = "pin-" + pin_id;
+
+            // add pin direction class
+            if ("dir" in pin) pin_left_name.classList.add("pin-dir-" + pin.dir);
+            else pin.dir = "e";
+
+            // display pin
+            showPinFunction(pin_id, null);
+
+            // add onclick handler
+            pin_left_name.onclick = function() {
+                showPinInfo(pin.name, pin.description, pin.detailed_description, pin.functions)
+            }
             
-            pin_left_name.onclick = function(pin_num) {
-                return function() {
-                    var pin  = header.pins[pin_num];
-                    showPinInfo(pin.name, pin.description, pin.detailed_description, pin.functions)
-                }
-            }(pin_num + 1)
-            
-            // add left pin number
-            var pin_left_num = pin_row.insertCell(1);
-            pin_left_num.innerText = pin_left_number;
-            pin_left_num.classList.add("pin-number")
-            
-            
-            // add right pin number
-            var pin_right_num = pin_row.insertCell(2);
-            pin_right_num.innerText = pin_right_number;
-            pin_right_num.classList.add("pin-number")
-            
-            // add right pin name
-            var pin_right_name = pin_row.insertCell(3);
-            pin_right_name.classList.add("pin-name")
-            if ("other_classes" in pin_right) pin_right.other_classes.forEach(c => {
-                pin_right_name.classList.add(c)
-            })
-            pin_right_name.id = "pin-" + pin_right_number;
-            showPinFunction(pin_right_number, null);
-            
-            pin_right_name.onclick = function(pin_num) {
-                return function() {
-                    var pin  = header.pins[pin_num];
-                    showPinInfo(pin.name, pin.description, pin.detailed_description, pin.functions)
-                }
-            }(pin_num)
+    
         }
+
+        // increment pin id
+        pin_id += 1;
+    
+    });
         
-    })
 }
 
 /**
@@ -178,7 +173,7 @@ function populateFunctionTable()
  */
 function showPinsOfFunction(function_name, controller_id=null)
 {
-    for (var i = 1; i <= 200; i++)
+    for (var i = 0; i <= pinout.pins.length; i++)
     {
         showPinFunction(i, function_name, controller_id);
     }
@@ -187,7 +182,7 @@ function showPinsOfFunction(function_name, controller_id=null)
 /**
  * Show a pin in the context of a certain function (if it supports it, including as an alternate function)
  * @param {number} pin_id the number of the pin to show
- * @param {string} function_name the name of the function to show
+ * @param {string} function_name the name of the function to show (null for default)
  * @param {string} controller_id the id of the specific controller to show the pins for (null shows all pins of that function)
  */
 function showPinFunction(pin_id, function_name, controller_id=null)
@@ -197,13 +192,8 @@ function showPinFunction(pin_id, function_name, controller_id=null)
     // get pin element
     var pin_element = document.getElementById(`pin-${pin_id.toString()}`);
     
-    // get pin position
-    var header_num = Math.floor((pin_id-1)/100);
-    var pin_num = (pin_id-1) % 100;
-    console.debug(`header ${header_num}, pin ${pin_num}`)
-    
     // get pin description
-    var pin_description = pinout.headers[header_num].pins[pin_num];
+    var pin_description = pinout.pins[pin_id];
     console.debug("pin description:", pin_description)
     
     if (pin_element)
@@ -222,7 +212,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                 pin_element.classList.remove("pin-class-" + func_class)
             });
             
-            pin_element.innerText = pin_description.name;
+            pin_element.innerHTML = pin_description.name;
             pin_element.title = pin_description.description;
             pin_element.classList.add("pin-class-" + pin_description.class)
         }
@@ -331,6 +321,15 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                 pin_element.classList.add("pin-class-hide")
             }
         }
+
+        // add pin number
+        let pin_left_num = document.createElement("div");
+        pin_left_num.innerText = pin_id + 1;
+        pin_left_num.classList.add("pin-number")
+        if (pin_description.dir == "w" || pin_description.dir == "s") 
+            pin_element.append(pin_left_num);
+        else
+            pin_element.prepend(pin_left_num);
     }
     else
     {
@@ -340,6 +339,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
 
 function showPinInfo(pin_name, pin_description, pin_detailed_description, functions=null)
 {
+    // update info panel with pin info
     document.getElementById("selected-pin-name").innerText = pin_name;
     if (pin_detailed_description) document.getElementById("selected-pin-description").innerHTML = pin_detailed_description;
     else if (pin_description) document.getElementById("selected-pin-description").innerText = pin_description;
@@ -409,7 +409,7 @@ function searchForSignal(fuse, pattern)
     console.log(matches)
 
     // highlight stored matches
-    for (var i = 1; i <= 200; i++)
+    for (var i = 0; i <= pinout.pins.length; i++)
     {
         // get pin element
         var pin_element = document.getElementById(`pin-${i}`);
@@ -471,5 +471,6 @@ var pin_fuse = new Fuse(pinout.headers, options)
 
 
 // populate tables on page load
+generatePinTable();
 populatePinHeaderTables();
 populateFunctionTable();

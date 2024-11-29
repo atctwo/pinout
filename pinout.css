@@ -63,8 +63,10 @@ body { margin: 0; padding: 0; }
 
 .table-container {
 
+    width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow: scroll;
+    padding: 20px;
 
     /* flex stuff for children */
     display: flex;
@@ -103,8 +105,12 @@ body { margin: 0; padding: 0; }
 }
 
 .pin-number {
+    display: inline-block;
     text-align: center;
-    width: 3em;
+    padding: 4px;
+    margin: 5px;
+    background-color: #cacaca80;
+    border-radius: 5px;
 }
 
 table, td, th {
@@ -180,6 +186,13 @@ table {
 
 .pin-class-hide {
     opacity: 0.2;
+}
+
+.pin-dir-e {
+    text-align: left;
+}
+.pin-dir-w {
+    text-align: right;
 }
 
 .pin-class-gnd {
