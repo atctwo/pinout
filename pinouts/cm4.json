@@ -1,263 +1,215 @@
-/*
-adapted from https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf
-
-pin description format
 {
-    "name": the name that is displayed on the pinout diagram
-    "description": a short description of the pin, shown when the pin is clicked on or hovered over
-    "detailed_description": (optional) a longer (optionally HTML based) string with a more detailed description of the pin
-    "class": an overall idea of what type of pin it is, or what peripheral it belongs to.  determines the Regular function used for colour coding
-    "controller_id": (optional) the id of the peripheral controller this pin belongs to
-    "functions": (optional) an array of strings that determine alternate functions for each pin
-    "other_classes": (optional) an array of strings to also set as classes for the pin (ie: for alternate functions)
-    
-    Regular function is determined by "name" and "class", but additional alternate functions can be defined in the
-    "functions" property
-    
-    other classes format
-    {
-        "name": the name of the pin / signal
-        "description": a description of the pin / signal
-        "class": an overall idea of what type of pin it is, or what peripheral it belongs to.  determines the Regular function used for colour coding
-        "controller_id": (optional) the id of the peripheral controller this pin belongs to
-    }
-}
+    "function_name_columns": 2,
+    "function_names" : [
+        {
+            "name": "All Pins", 
+            "description": "Show all pins", 
+            "detailed_description": "",
+            "class": null 
+        },
+        {
+            "name": "\u200b", 
+            "description": "", 
+            "detailed_description": "",
+            "class": null 
+        },
+        
+        {
+            "name": "Power", 
+            "description": "Power inputs and outputs",
+            "detailed_description": "These are the CM4's power input and output pins: <ul> <li>6 x 5V input pins</li> <li>2 x 1.8V Output pins</li> <li>2 x 3.3V Output pins</li> <li>GPIO_VREF, which controls whether the GPIO pins operate at 3v3 or 1v8</li> </ul>",
+            "controllers": [
+                { "name": "5V Input", "id": "5v" },
+                { "name": "3.3V Output", "id": "3v3" },
+                { "name": "1.8V Output", "id": "1v8" },
+                { "name": "GPIO VRef", "id": "gpio" }
+            ]
+        },
+        {
+            "name": "Ground", 
+            "description": "Ground connections", 
+            "detailed_description": "",
+            "class": "gnd"
+        },
+        
+        {
+            "name": "System", 
+            "description": "Raspberry Pi System pins", 
+            "detailed_description": "These are pins for controlling and monitoring the Raspberry Pi system. <ul> <li>Wifi and Bluetooth disable pins</li> <li>Power and actvity output LEDs</li> <li>Reset and shutdown pins</li> <li>Many more</li> </ul>",
+            "class": "rpi" 
+        },
+        {
+            "name": "GPIO", 
+            "description": "General Purpose Input / Output",
+            "detailed_description": "Pins that can be used as digital inputs or outputs as needed.  See <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#general-purpose-io-gpio'>the Raspberry Pi documentation</a>"
+        },
+        
+        {
+            "name": "GPCLK", 
+            "description": "General Purpose Clock",
+            "detailed_description": "Can be configured to output a fixed frequency on a pin.  There's not much documentation on this, but <a href='https://pinout.xyz/pinout/gpclk'>pinout.xyz</a> has an introduction",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" },
+                { "name": "2" }
+            ]
+        },
+        {
+            "name": "\u200b", 
+            "description": "", 
+            "detailed_description": "",
+            "class": null 
+        },
+        
+        {
+            "name": "I2C / BSC", 
+            "description": "Inter-integrated Circuit / Broadcom Serial Controller",
+            "detailed_description": "",
+            "class": "i2c",
+            "controllers": [
+                { "name": "0", "other_classes": ["hat-i2c"] },
+                { "name": "1" },
+                { "name": "3" },
+                { "name": "4" },
+                { "name": "5" },
+                { "name": "6" }
+            ]
+        },
+        {
+            "name": "SPI", 
+            "description": "Serial Peripheral Interface",
+            "detailed_description": "SPI Controller.  The CM4 has 7 SPI controllers, details are on <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#serial-peripheral-interface-spi'>the Raspberry Pi documentation</a>",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" },
+                { "name": "3" },
+                { "name": "4" },
+                { "name": "5" },
+                { "name": "6" }
+            ]
+        },
+        
+        {
+            "name": "UART", 
+            "description": "Universal Asynchronous Receiver Transmitter",
+            "detailed_description": "",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" },
+                { "name": "2" },
+                { "name": "3" },
+                { "name": "4" },
+                { "name": "5" }
+            ]
+        },
+        {
+            "name": "SDIO", 
+            "description": "Secure Digital Input Output",
+            "detailed_description": "Used to connect the CM4 Lite to an SD Card.  If not using a CM4 Lite, this is used for the onboard eMMC, and shouldn't be used.",
+            "controllers": [
+                { "name": "SD / eMMC", "id": "sd"},
+                { "name": "0" },
+                { "name": "1" }
+            ]
+        },
+        
+        
+        {
+            "name": "USB",
+            "description": "Universal Serial Bus",
+            "detailed_description": "Hardware USB controller.  Details are available on the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#universal-serial-bus-usb'>Raspberry Pi documentation</a>"
+        },
+        {
+            "name": "Ethernet", 
+            "description": "Gigabit Ethernet",
+            "detailed_description": ""
+        },
+        
+        {
+            "name": "PCIe", 
+            "description": "Peripheral Component Interconnect Express",
+            "detailed_description": ""
+        },
+        {
+            "name": "\u200b", 
+            "description": "", 
+            "detailed_description": "",
+            "class": null 
+        },
+        
+        {
+            "name": "PWM", 
+            "description": "Pulse Width Modulation",
+            "detailed_description": ""
+        },
+        {
+            "name": "PCM", 
+            "description": "Pulse Code Modulation",
+            "detailed_description": ""
+        },
+        
+        {
+            "name": "SMI", 
+            "description": "Secondary Memory Interface", 
+            "detailed_description": "",
+            "class": "smi" 
+        },
+        {
+            "name": "JTAG", 
+            "description": "Joint Test Action Group Interface",
+            "detailed_description": "Protocol for external programming and debugging and testing"
+        },
+        
+        {
+            "name": "HDMI", 
+            "description": "High Definition Multimedia Interface",
+            "detailed_description": "",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" }
+            ]
+        },
+        {
+            "name": "TV", 
+            "description": "Analogue TV Video Output",
+            "detailed_description": "Analogue TV Video Output, commonly used with RCA / Phono / Composite connectors."
+        },
+        
+        {
+            "name": "DPI", 
+            "description": "Display Parallel Interface",
+            "detailed_description": "Parallel interface for controlling LCD displays.  See the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi'>Raspberry Pi documentation</a>"
+        },
+        {
+            "name": "DSI", 
+            "description": "Display Serial Interface",
+            "detailed_description": "Serial interface for controlling LCD displays (like the <a href='https://www.raspberrypi.com/documentation/accessories/display.html'>official Touch display</a>).",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" }
+            ]
+        },
+        
+        {
+            "name": "CSI", 
+            "description": "Camera Serial Interface",
+            "detailed_description": "",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" }
+            ]
+        },
+        {
+            "name": "Reserved", 
+            "description": "Pins reserved for future use",
+            "detailed_description": ""
+        }
+    ],
 
-function_name_columns defines the number of columns the filter table will have.  you can add "blank" functions
-to group similar functions together.
+    "pin_rows": 50,
+    "pin_cols": 5,
 
-function names filter table format
-{
-    "name": the name to show on the filter table
-    "description": a short string to describe the function
-    "detailed_description": (optional) a longer (optionally HTML based) string with a more detailed description of the function
-    "class": pins of this class (pin-function-<class>) will be highlighted.  if this is missing, name.toLower() will be used
-    "controllers": (optional) an array of controller objects that represent each individual controller for that peripheral
-    
-    controller object format
-    {
-        "name": the name to show on the controller filter table
-        "id": (optional) the id to use to identify which pins are connected to this controller.  if not present, name.toLowerCase() is used
-        "other_classes": (optional) an array of strings to also set as classes for the controller filter table entry (ie: for alternate functions)
-    }
-}
-
-*/
-
-function_name_columns = 2;
-function_names = [
-    {
-        "name": "All Pins", 
-        "description": "Show all pins", 
-        "detailed_description": "",
-        "class": null 
-    },
-    { // blank
-        "name": "\u200b", 
-        "description": "", 
-        "detailed_description": "",
-        "class": null 
-    },
-    
-    {
-        "name": "Power", 
-        "description": "Power inputs and outputs",
-        "detailed_description": "These are the CM4's power input and output pins: <ul> <li>6 x 5V input pins</li> <li>2 x 1.8V Output pins</li> <li>2 x 3.3V Output pins</li> <li>GPIO_VREF, which controls whether the GPIO pins operate at 3v3 or 1v8</li> </ul>",
-        "controllers": [
-            { "name": "5V Input", "id": "5v" },
-            { "name": "3.3V Output", "id": "3v3" },
-            { "name": "1.8V Output", "id": "1v8" },
-            { "name": "GPIO VRef", "id": "gpio" },
-        ]
-    },
-    {
-        "name": "Ground", 
-        "description": "Ground connections", 
-        "detailed_description": "",
-        "class": "gnd"
-    },
-    
-    {
-        "name": "System", 
-        "description": "Raspberry Pi System pins", 
-        "detailed_description": "These are pins for controlling and monitoring the Raspberry Pi system. <ul> <li>Wifi and Bluetooth disable pins</li> <li>Power and actvity output LEDs</li> <li>Reset and shutdown pins</li> <li>Many more</li> </ul>",
-        "class": "rpi" 
-    },
-    {
-        "name": "GPIO", 
-        "description": "General Purpose Input / Output",
-        "detailed_description": "Pins that can be used as digital inputs or outputs as needed.  See <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#general-purpose-io-gpio'>the Raspberry Pi documentation</a>",
-    },
-    
-    {
-        "name": "GPCLK", 
-        "description": "General Purpose Clock",
-        "detailed_description": "Can be configured to output a fixed frequency on a pin.  There's not much documentation on this, but <a href='https://pinout.xyz/pinout/gpclk'>pinout.xyz</a> has an introduction",
-        "controllers": [
-            { "name": "0" },
-            { "name": "1" },
-            { "name": "2" }
-        ]
-    },
-    { // blank
-        "name": "\u200b", 
-        "description": "", 
-        "detailed_description": "",
-        "class": null 
-    },
-    
-    {
-        "name": "I2C / BSC", 
-        "description": "Inter-integrated Circuit / Broadcom Serial Controller",
-        "detailed_description": "",
-        "class": "i2c",
-        "controllers": [
-            { "name": "0", "other_classes": ["hat-i2c"] },
-            { "name": "1" },
-            // { "name": "2" },
-            { "name": "3" },
-            { "name": "4" },
-            { "name": "5" },
-            { "name": "6" }
-        ]
-    },
-    {
-        "name": "SPI", 
-        "description": "Serial Peripheral Interface",
-        "detailed_description": "SPI Controller.  The CM4 has 7 SPI controllers, details are on <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#serial-peripheral-interface-spi'>the Raspberry Pi documentation</a>",
-        "controllers": [
-            { "name": "0" },
-            { "name": "1" },
-            // { "name": "2" },
-            { "name": "3" },
-            { "name": "4" },
-            { "name": "5" },
-            { "name": "6" },
-        ]
-    },
-    
-    {
-        "name": "UART", 
-        "description": "Universal Asynchronous Receiver Transmitter",
-        "detailed_description": "",
-        "controllers": [
-            { "name": "0" },
-            { "name": "1" },
-            { "name": "2" },
-            { "name": "3" },
-            { "name": "4" },
-            { "name": "5" },
-        ]
-    },
-    {
-        "name": "SDIO", 
-        "description": "Secure Digital Input Output",
-        "detailed_description": "Used to connect the CM4 Lite to an SD Card.  If not using a CM4 Lite, this is used for the onboard eMMC, and shouldn't be used.",
-        "controllers": [
-            { "name": "SD / eMMC", "id": "sd"},
-            { "name": "0" },
-            { "name": "1" }
-        ]
-    },
-    
-    
-    {
-        "name": "USB",
-        "description": "Universal Serial Bus",
-        "detailed_description": "Hardware USB controller.  Details are available on the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#universal-serial-bus-usb'>Raspberry Pi documentation</a>"
-    },
-    {
-        "name": "Ethernet", 
-        "description": "Gigabit Ethernet",
-        "detailed_description": "",
-    },
-    
-    {
-        "name": "PCIe", 
-        "description": "Peripheral Component Interconnect Express",
-        "detailed_description": "",
-    },
-    { // blank
-        "name": "\u200b", 
-        "description": "", 
-        "detailed_description": "",
-        "class": null 
-    },
-    
-    {
-        "name": "PWM", 
-        "description": "Pulse Width Modulation",
-        "detailed_description": ""
-    },
-    {
-        "name": "PCM", 
-        "description": "Pulse Code Modulation",
-        "detailed_description": "",
-    },
-    
-    {
-        "name": "SMI", 
-        "description": "Secondary Memory Interface", 
-        "detailed_description": "",
-        "class": "smi" 
-    },
-    {
-        "name": "JTAG", 
-        "description": "Joint Test Action Group Interface",
-        "detailed_description": "Protocol for external programming and debugging and testing",
-    },
-    
-    {
-        "name": "HDMI", 
-        "description": "High Definition Multimedia Interface",
-        "detailed_description": "",
-        "controllers": [
-            { "name": "0" },
-            { "name": "1" }
-        ]
-    },
-    {
-        "name": "TV", 
-        "description": "Analogue TV Video Output",
-        "detailed_description": "Analogue TV Video Output, commonly used with RCA / Phono / Composite connectors.",
-    },
-    
-    {
-        "name": "DPI", 
-        "description": "Display Parallel Interface",
-        "detailed_description": "Parallel interface for controlling LCD displays.  See the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi'>Raspberry Pi documentation</a>",
-    },
-    {
-        "name": "DSI", 
-        "description": "Display Serial Interface",
-        "detailed_description": "Serial interface for controlling LCD displays (like the <a href='https://www.raspberrypi.com/documentation/accessories/display.html'>official Touch display</a>).",
-        "controllers": [
-            { "name": "0" },
-            { "name": "1" }
-        ]
-    },
-    
-    {
-        "name": "CSI", 
-        "description": "Camera Serial Interface",
-        "detailed_description": "",
-        "controllers": [
-            { "name": "0" },
-            { "name": "1" }
-        ]
-    },
-    {
-        "name": "Reserved", 
-        "description": "Pins reserved for future use",
-        "detailed_description": "",
-    },
-]
-
-pin_rows = 50;
-pin_cols = 5;
-
-pinout = {
-    pins: [
+    "pins": [
         {
             "row": 49,
             "col": 4,
@@ -3024,17 +2976,3 @@ pinout = {
     ]
 }
 
-// for (let i = 0; i < pinout.pins.length; i++) {
-//     let pin = pinout.pins[i];
-
-//     if (i < 100) {
-//         pin.col = (i%2==0) ? 4 : 3;
-//         pin.dir = (i%2==0) ? "e" : "w";
-//     }
-//     else {
-//         pin.col = (i%2==0) ? 1 : 0;
-//         pin.dir = (i%2==0) ? "e" : "w";
-//     }
-
-//     pin.row = 49 - Math.floor((i % 100) / 2);
-// }

@@ -1,85 +1,110 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Raspberry Pi CM4 Pinout</title>
+        <title>Pinout Thingy</title>
         <link rel="stylesheet" href="pinout.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
     <body>
 
-        <div id="title-bar">
-            <button onclick="toggleSidebar();" id="sidebar-toggle">☰</button>
-            <h3>Raspberry Pi CM4 Pinout</h3>
-        </div>
+        <div id="site-container">
 
-        <div id="pinout-container">
+            <div id="title-bar">
+                <button onclick="toggleSidebar();" id="sidebar-toggle">☰</button>
+                <h3 id="site-title">Pinout Thingy</h3>
+            </div>
 
-            <div id="sidebar">
-                
-                <!-- function filter table -->
-                <table id="function-filter">
-                    <tr>
-                        <td id="function-filter-title"><b>Filter by function</b></td>
-                    </tr>
-                </table><br>
-                
-                <!-- peripheral controller filter table -->
-                <div id="controller-filter-container">
-                    <table id="controller-filter">
-                        <tr>
-                            <td id="controller-filter-title"><b>Filter by controller</b></td>
-                        </tr>
-                    </table><br>
-                </div>
-                
-                <!-- signal search -->
-                <input id="signal-search" placeholder="Search for signal">&nbsp;<button id="signal-search-btn" onclick="signalSearch();">Go</button>
-                <br><br>
-                
-                <!-- selected pin details -->
-                <div id="selected-pin-details">
-                    
-                    <h2 id="selected-pin-name"></h2>
-                    <p id="selected-pin-description">Click on a pin to see details about it, or click on one of the functions above to see which pins support it.</p>
-                
-                    <div id="alt-function-container">
-                        <h3 id="alt-function-title">Alternate Functions</h3>
-                        <table id="alt-function-table">
+            <div id="not-title-bar-container">
+
+                <div id="sidebar">
+                        
+                    <div id="sidebar-tools">
+
+                        <div><a href="?"><em>Back to device list</em></a></div>
+                        <h2 id="sidebar-device-name"></h2>
+
+                        <!-- function filter table -->
+                        <table id="function-filter">
                             <tr>
-                                <td></td>
-                                <td><b>Signal</b></td>
-                                <td><b>Description</b></td>
+                                <td id="function-filter-title"><b>Filter by function</b></td>
                             </tr>
-                        </table>
+                        </table><br>
+                        
+                        <!-- peripheral controller filter table -->
+                        <div id="controller-filter-container">
+                            <table id="controller-filter">
+                                <tr>
+                                    <td id="controller-filter-title"><b>Filter by controller</b></td>
+                                </tr>
+                            </table><br>
+                        </div>
+                        
+                        <!-- signal search -->
+                        <input id="signal-search" placeholder="Search for signal">&nbsp;<button id="signal-search-btn" onclick="signalSearch();">Go</button>
+                        <br><br>
+                        
+                        <!-- selected pin details -->
+                        <div id="selected-pin-details">
+                            
+                            <h2 id="selected-pin-name"></h2>
+                            <p id="selected-pin-description">Click on a pin to see details about it, or click on one of the functions above to see which pins support it.</p>
+                        
+                            <div id="alt-function-container">
+                                <h3 id="alt-function-title">Alternate Functions</h3>
+                                <table id="alt-function-table">
+                                    <tr>
+                                        <td></td>
+                                        <td><b>Signal</b></td>
+                                        <td><b>Description</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <br>
-                    <h2>About</h2>
-                    <p>
-                        Created by atctwo in 2022 :)
-                        <br>
-                        Sources used:
-                        <ul>
-                            <li><a href="https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf">CM4 Datasheet</a></li>
-                            <li><a href="https://elinux.org/RPi_BCM2711_GPIOs">eLinux.org BCM2711 GPIO Reference</a></li>
-                        </ul>
-                        <br>
-                        If you see an error, or have any other suggestions, raise an issue on <a href="https://github.com/atctwo/pinout">GitHub</a>!
-                    </p>
-                    
+                    <div id="sidebar-description">
+                        <h2>Device Info</h2>
+                        <p id="sidebar-desc"></p>
+                    </div>
+
+                    <div id="sidebar-about">
+                        <h2>About</h2>
+                        <p>Created by <a href="https://atctwo.net">atctwo</a>!<br>Made in 2022 - 2024</p>
+                        <p>If you see an error, or have any other suggestions, raise an issue on <a href="https://github.com/atctwo/pinout">GitHub</a>!</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="table-container">
-                <table class="pin-header" id="pin-header-0"></table>
+
+                <div id="pinout-container">
+
+                    <div id="loading-container">
+                        <div class="spinny">
+                            <h1>Pinout Thingy!</h1>
+                            <h2><em>Loading...</em></h2>
+                        </div>
+                    </div>
+
+                    <div id="welcome-container">
+                        <h1>Welcome to pinout thingy!</h1>
+                        <p>
+                            Which device do you want to view the pinout of?
+                            <ul id="device-list"></ul>
+                        </p>
+                    </div>
+                    
+                    <div id="table-container" class="table-container">
+                        <table class="pin-header" id="pin-header-0"></table>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
-
-        <button onclick="fuck()"> FICK </button>
     </body>
     
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-    <script src="pins.js"></script>
     <script src="pinout.js"></script>
+    <script src="main.js"></script>
 </html>

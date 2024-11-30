@@ -6,10 +6,10 @@ function generatePinTable() {
 
     var pin_table = document.getElementById("pin-header-0");
 
-    for (row = 0; row < pin_rows; row++) {
+    for (row = 0; row < pinout.pin_rows; row++) {
         let tr = pin_table.insertRow(-1);
         tr.id = "pin-row-" + row;
-        for (col = 0; col < pin_cols; col++) {
+        for (col = 0; col < pinout.pin_cols; col++) {
             let td = tr.insertCell(-1);
             td.id = "pin-cell-" + row + "-" + col;
         }
@@ -75,15 +75,15 @@ function populateFunctionTable()
     var func_table = document.getElementById("function-filter");
     
     // add functions
-    for (var i = 0; i < function_names.length; i += function_name_columns) {
+    for (var i = 0; i < pinout.function_names.length; i += pinout.function_name_columns) {
         
         // add row
         var function_row = func_table.insertRow(-1);
         
-        for (var j = 0; j < function_name_columns; j++)
+        for (var j = 0; j < pinout.function_name_columns; j++)
         {
         
-            var function_name = function_names[i + j]
+            var function_name = pinout.function_names[i + j]
             
             // add cell
             var function_cell = function_row.insertCell(-1);
@@ -163,7 +163,7 @@ function populateFunctionTable()
     }
     
     // set title colspan
-    document.getElementById("function-filter-title").colSpan = function_name_columns;
+    document.getElementById("function-filter-title").colSpan = pinout.function_name_columns;
 }
 
 /**
@@ -173,7 +173,7 @@ function populateFunctionTable()
  */
 function showPinsOfFunction(function_name, controller_id=null)
 {
-    for (var i = 0; i <= pinout.pins.length; i++)
+    for (var i = 0; i < pinout.pins.length; i++)
     {
         showPinFunction(i, function_name, controller_id);
     }
@@ -205,7 +205,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
         if (!function_name)
         {
             // remove any existing pin classes
-            function_names.forEach(func => {
+            pinout.function_names.forEach(func => {
                 var func_class = "";
                 if ("class" in func) func_class = func.class;
                 else func_class = func.name.toLowerCase();
@@ -215,6 +215,15 @@ function showPinFunction(pin_id, function_name, controller_id=null)
             pin_element.innerHTML = pin_description.name;
             pin_element.title = pin_description.description;
             pin_element.classList.add("pin-class-" + pin_description.class)
+
+            // add pin number
+            let pin_left_num = document.createElement("div");
+            pin_left_num.innerText = pin_id + 1;
+            pin_left_num.classList.add("pin-number")
+            if (pin_description.dir == "w" || pin_description.dir == "s") 
+                pin_element.append(pin_left_num);
+            else
+                pin_element.prepend(pin_left_num);
         }
         // otherwise, show pins of the specified function
         else
@@ -245,7 +254,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                 }
                 
                 // remove any existing pin classes
-                function_names.forEach(func => {
+                pinout.function_names.forEach(func => {
                     var func_class = "";
                     if ("class" in func) func_class = func.class;
                     else func_class = func.name.toLowerCase();
@@ -256,6 +265,15 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                 pin_element.title = pin_description.description;
                 pin_element.classList.add("pin-class-" + pin_description.class)
                 found_matching_function = true;
+
+                // add pin number
+                let pin_left_num = document.createElement("div");
+                pin_left_num.innerText = pin_id + 1;
+                pin_left_num.classList.add("pin-number")
+                if (pin_description.dir == "w" || pin_description.dir == "s") 
+                    pin_element.append(pin_left_num);
+                else
+                    pin_element.prepend(pin_left_num);
             }
             
             // check alt functions
@@ -281,7 +299,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                             if (found_matching_function) pin_element.innerText += ", ";
                             else {
                                 // remove any existing pin classes
-                                function_names.forEach(func => {
+                                pinout.function_names.forEach(func => {
                                     var func_class = "";
                                     if ("class" in func) func_class = func.class;
                                     else func_class = func.name.toLowerCase();
@@ -321,15 +339,6 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                 pin_element.classList.add("pin-class-hide")
             }
         }
-
-        // add pin number
-        let pin_left_num = document.createElement("div");
-        pin_left_num.innerText = pin_id + 1;
-        pin_left_num.classList.add("pin-number")
-        if (pin_description.dir == "w" || pin_description.dir == "s") 
-            pin_element.append(pin_left_num);
-        else
-            pin_element.prepend(pin_left_num);
     }
     else
     {
@@ -388,42 +397,25 @@ function searchForSignal(fuse, pattern)
     console.log(results)
 
     // store each match
-    results.forEach((header, header_id) => {
+    results.forEach((pin) => {
+       
+        // get pin id
+        let pin_id = pin.refIndex;
+        matches.push(pin_id);
 
-        console.log(header_id)
-
-        // get the header table element
-        var header_table = document.getElementById(header.item.table_id);
-
-        // store the pin number of each match
-        header.matches.forEach(match => {
-
-            var pin_id = match.refIndex + 1 + (100 * header.refIndex);
-            console.log(`pin id ${pin_id}`)
-            console.log(match)
-            matches.push(pin_id)
-
-        })
     });
 
-    console.log(matches)
+    for (var i = 0; i < pinout.pins.length; i++) {
 
-    // highlight stored matches
-    for (var i = 0; i <= pinout.pins.length; i++)
-    {
         // get pin element
-        var pin_element = document.getElementById(`pin-${i}`);
+        let pin_element = document.getElementById(`pin-${i}`);
+                
+        // set hide class
+        if (matches.includes(i)) pin_element.classList.remove("pin-class-hide");
+        else pin_element.classList.add("pin-class-hide");
 
-        // remove hide class
-        pin_element.classList.remove("pin-class-hide");
-
-        // if pin id isn't in matches
-        if (!matches.includes(i))
-        {
-            // set pin transparency
-            pin_element.classList.add("pin-class-hide");
-        }
     }
+                
 }
 
 function signalSearch()
@@ -444,33 +436,31 @@ function toggleSidebar()
     else sidebar.style.display = "block";
 }
 
+function setupSearch() {
 
-// setup Fuse.js fuzzy searching
-const options = {
-    // isCaseSensitive: false,
-    // includeScore: false,
-    // shouldSort: true,
-    includeMatches: true,
-    // findAllMatches: false,
-    // minMatchCharLength: 1,
-    // location: 0,
-    threshold: 0.3,
-    // distance: 100,
-    useExtendedSearch: true,
-    // ignoreLocation: false,
-    // ignoreFieldNorm: false,
-    // fieldNormWeight: 1,
-    keys: [
-      "pins.name",
-      "pins.description",
-      "pins.functions.name",
-      "pins.functions.description"
-    ]
-  };
-var pin_fuse = new Fuse(pinout.headers, options)
+    // setup Fuse.js fuzzy searching
+    const options = {
+        // isCaseSensitive: false,
+        // includeScore: false,
+        // shouldSort: true,
+        includeMatches: true,
+        // findAllMatches: false,
+        // minMatchCharLength: 1,
+        // location: 0,
+        threshold: 0.3,
+        // distance: 100,
+        // useExtendedSearch: true,
+        // ignoreLocation: false,
+        // ignoreFieldNorm: false,
+        // fieldNormWeight: 1,
+        keys: [
+            "name",
+            "description",
+            "functions.name",
+            "functions.description"
+        ]
+    };
 
+    window.pin_fuse = new Fuse(pinout.pins, options)
 
-// populate tables on page load
-generatePinTable();
-populatePinHeaderTables();
-populateFunctionTable();
+}
