@@ -1,19 +1,15 @@
 {
+    "function_name_row": 13,
     "function_name_columns": 2,
     "function_names" : [
         {
             "name": "All Pins", 
             "description": "Show all pins", 
             "detailed_description": "",
-            "class": null 
-        },
-        {
-            "name": "\u200b", 
-            "description": "", 
-            "detailed_description": "",
-            "class": null 
-        },
-        
+            "class": null,
+            "row": 0,
+            "col": 0
+        },      
         {
             "name": "Power", 
             "description": "Power inputs and outputs",
@@ -23,25 +19,33 @@
                 { "name": "3.3V Output", "id": "3v3" },
                 { "name": "1.8V Output", "id": "1v8" },
                 { "name": "GPIO VRef", "id": "gpio" }
-            ]
+            ],
+            "row": 1,
+            "col": 0
         },
         {
             "name": "Ground", 
             "description": "Ground connections", 
             "detailed_description": "",
-            "class": "gnd"
+            "class": "gnd",
+            "row": 1,
+            "col": 1
         },
         
         {
             "name": "System", 
             "description": "Raspberry Pi System pins", 
             "detailed_description": "These are pins for controlling and monitoring the Raspberry Pi system. <ul> <li>Wifi and Bluetooth disable pins</li> <li>Power and actvity output LEDs</li> <li>Reset and shutdown pins</li> <li>Many more</li> </ul>",
-            "class": "rpi" 
+            "class": "rpi",
+            "row": 2,
+            "col": 0
         },
         {
             "name": "GPIO", 
             "description": "General Purpose Input / Output",
-            "detailed_description": "Pins that can be used as digital inputs or outputs as needed.  See <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#general-purpose-io-gpio'>the Raspberry Pi documentation</a>"
+            "detailed_description": "Pins that can be used as digital inputs or outputs as needed.  See <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#general-purpose-io-gpio'>the Raspberry Pi documentation</a>",
+            "row": 2,
+            "col": 1
         },
         
         {
@@ -52,13 +56,9 @@
                 { "name": "0" },
                 { "name": "1" },
                 { "name": "2" }
-            ]
-        },
-        {
-            "name": "\u200b", 
-            "description": "", 
-            "detailed_description": "",
-            "class": null 
+            ],
+            "row": 3,
+            "col": 0
         },
         
         {
@@ -73,7 +73,9 @@
                 { "name": "4" },
                 { "name": "5" },
                 { "name": "6" }
-            ]
+            ],
+            "row": 4,
+            "col": 0
         },
         {
             "name": "SPI", 
@@ -86,7 +88,9 @@
                 { "name": "4" },
                 { "name": "5" },
                 { "name": "6" }
-            ]
+            ],
+            "row": 4,
+            "col": 1
         },
         
         {
@@ -100,7 +104,9 @@
                 { "name": "3" },
                 { "name": "4" },
                 { "name": "5" }
-            ]
+            ],
+            "row": 5,
+            "col": 0
         },
         {
             "name": "SDIO", 
@@ -110,54 +116,64 @@
                 { "name": "SD / eMMC", "id": "sd"},
                 { "name": "0" },
                 { "name": "1" }
-            ]
+            ],
+            "row": 5,
+            "col": 1
         },
         
         
         {
             "name": "USB",
             "description": "Universal Serial Bus",
-            "detailed_description": "Hardware USB controller.  Details are available on the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#universal-serial-bus-usb'>Raspberry Pi documentation</a>"
+            "detailed_description": "Hardware USB controller.  Details are available on the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#universal-serial-bus-usb'>Raspberry Pi documentation</a>",
+            "row": 6,
+            "col": 0
         },
         {
             "name": "Ethernet", 
             "description": "Gigabit Ethernet",
-            "detailed_description": ""
+            "detailed_description": "",
+            "row": 6,
+            "col": 1
         },
         
         {
             "name": "PCIe", 
             "description": "Peripheral Component Interconnect Express",
-            "detailed_description": ""
-        },
-        {
-            "name": "\u200b", 
-            "description": "", 
             "detailed_description": "",
-            "class": null 
+            "row": 7,
+            "col": 0
         },
         
         {
             "name": "PWM", 
             "description": "Pulse Width Modulation",
-            "detailed_description": ""
+            "detailed_description": "",
+            "row": 8,
+            "col": 0
         },
         {
             "name": "PCM", 
             "description": "Pulse Code Modulation",
-            "detailed_description": ""
+            "detailed_description": "",
+            "row": 8,
+            "col": 1
         },
         
         {
             "name": "SMI", 
             "description": "Secondary Memory Interface", 
             "detailed_description": "",
-            "class": "smi" 
+            "class": "smi",
+            "row": 9,
+            "col": 0
         },
         {
             "name": "JTAG", 
             "description": "Joint Test Action Group Interface",
-            "detailed_description": "Protocol for external programming and debugging and testing"
+            "detailed_description": "Protocol for external programming and debugging and testing",
+            "row": 9,
+            "col": 1
         },
         
         {
@@ -167,18 +183,24 @@
             "controllers": [
                 { "name": "0" },
                 { "name": "1" }
-            ]
+            ],
+            "row": 10,
+            "col": 0
         },
         {
             "name": "TV", 
             "description": "Analogue TV Video Output",
-            "detailed_description": "Analogue TV Video Output, commonly used with RCA / Phono / Composite connectors."
+            "detailed_description": "Analogue TV Video Output, commonly used with RCA / Phono / Composite connectors.",
+            "row": 10,
+            "col": 1
         },
         
         {
             "name": "DPI", 
             "description": "Display Parallel Interface",
-            "detailed_description": "Parallel interface for controlling LCD displays.  See the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi'>Raspberry Pi documentation</a>"
+            "detailed_description": "Parallel interface for controlling LCD displays.  See the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi'>Raspberry Pi documentation</a>",
+            "row": 11,
+            "col": 0
         },
         {
             "name": "DSI", 
@@ -187,7 +209,9 @@
             "controllers": [
                 { "name": "0" },
                 { "name": "1" }
-            ]
+            ],
+            "row": 11,
+            "col": 1
         },
         
         {
@@ -197,12 +221,16 @@
             "controllers": [
                 { "name": "0" },
                 { "name": "1" }
-            ]
+            ],
+            "row": 12,
+            "col": 0
         },
         {
             "name": "Reserved", 
             "description": "Pins reserved for future use",
-            "detailed_description": ""
+            "detailed_description": "",
+            "row": 12,
+            "col": 1
         }
     ],
 

@@ -74,91 +74,103 @@ function populateFunctionTable()
     // get function table
     var func_table = document.getElementById("function-filter");
     
+    // create table
+    for (let row = 0; row < pinout.function_name_row; row++) {
+        let row_obj = func_table.insertRow(-1);
+        for (let col = 0; col < pinout.function_name_columns; col++) {
+            let cell = row_obj.insertCell(-1);
+            cell.id = "func-" + row + "-" + col;
+        }
+    }
+
     // add functions
-    for (var i = 0; i < pinout.function_names.length; i += pinout.function_name_columns) {
+    for (var i = 0; i < pinout.function_names.length; i++) {
         
-        // add row
-        var function_row = func_table.insertRow(-1);
+
+        var function_name = pinout.function_names[i]
         
-        for (var j = 0; j < pinout.function_name_columns; j++)
-        {
+        // check whether to skip the cell
+        if ("skip" in function_name && function_name.skip) continue;
+
+        // add cell
+        var function_cell = document.getElementById("func-" + function_name.row + "-" + function_name.col);
         
-            var function_name = pinout.function_names[i + j]
-            
-            // add cell
-            var function_cell = function_row.insertCell(-1);
-            
-            // cell text and tooltip
-            function_cell.innerText = function_name.name;
-            function_cell.title = function_name.description;
-            
-            // cell class
-            var function_class = "";
-            if ("class" in function_name) function_class = function_name.class;
-            else function_class = function_name.name.toLowerCase();
-            
-            function_cell.classList.add("pin-class-" + function_class)
-            
-            if ("other_classes" in function_name) function_name.other_classes.forEach(c => {
-                cell.classList.add(c)
-            })
-            
-            // cell onclick
-            function_cell.onclick = function (function_name, function_class) {
-                return function() {
+        // cell text and tooltip
+        function_cell.innerText = function_name.name;
+        function_cell.title = function_name.description;
+        
+        // colspan and rowspan
+        console.error(function_name)
+        if ("colspan" in function_name) function_cell.colSpan = function_name.colspan;
+        if ("rowspan" in function_name) function_cell.rowSpan = function_name.rowspan;
+
+        // cell class
+        var function_class = "";
+        if ("class" in function_name) function_class = function_name.class;
+        else function_class = function_name.name.toLowerCase();
+        
+        function_cell.classList.add("pin-class-" + function_class)
+        
+        if ("other_classes" in function_name) function_name.other_classes.forEach(c => {
+            cell.classList.add(c)
+        })
+        
+        // cell onclick
+        function_cell.onclick = function (function_name, function_class) {
+            return function() {
+                
+                // show pins of that function
+                showPinsOfFunction(function_class);
+                
+                // show function info in pin info box
+                showPinInfo(function_name.name, function_name.description, function_name.detailed_description);
+                
+                // show controller table (if present)
+                var controller_table = document.getElementById("controller-filter");
+                var controller_table_container = document.getElementById("controller-filter-container");
+                if ("controllers" in function_name)
+                {
+                    // remove existing controller entries
+                    while (controller_table.rows.length > 1) controller_table.deleteRow(-1);
                     
-                    // show pins of that function
-                    showPinsOfFunction(function_class);
-                    
-                    // show function info in pin info box
-                    showPinInfo(function_name.name, function_name.description, function_name.detailed_description);
-                    
-                    // show controller table (if present)
-                    var controller_table = document.getElementById("controller-filter");
-                    var controller_table_container = document.getElementById("controller-filter-container");
-                    if ("controllers" in function_name)
-                    {
-                        // remove existing controller entries
-                        while (controller_table.rows.length > 1) controller_table.deleteRow(-1);
+                    // add new controller entries
+                    var row = controller_table.insertRow(-1);
+                    function_name.controllers.forEach(controller => {
                         
-                        // add new controller entries
-                        var row = controller_table.insertRow(-1);
-                        function_name.controllers.forEach(controller => {
-                            
-                            // make new cell
-                            var cell = row.insertCell(-1);
-                            cell.innerText = controller.name;
-                            
-                            // determine controller id
-                            var id = "";
-                            if ("id" in controller) id = controller.id;
-                            else                    id = controller.name.toLowerCase();
-                            cell.classList.add("pin-class-" + function_class);
-                            
-                            if ("other_classes" in controller) controller.other_classes.forEach(c => {
-                                cell.classList.add(c)
-                            })
-                            
-                            // cell onclick
-                            cell.onclick = function(func, id) {
-                                return function() {
-                                    showPinsOfFunction(func, id);
-                                }
-                            }(function_class, id)
-                            
+                        // make new cell
+                        var cell = row.insertCell(-1);
+                        cell.innerText = controller.name;
+                        
+                        // determine controller id
+                        var id = "";
+                        if ("id" in controller) id = controller.id;
+                        else                    id = controller.name.toLowerCase();
+                        cell.classList.add("pin-class-" + function_class);
+                        
+                        if ("other_classes" in controller) controller.other_classes.forEach(c => {
+                            cell.classList.add(c)
                         })
                         
-                        // show table
-                        controller_table_container.style.display = "block";
-                        document.getElementById("controller-filter-title").colSpan = function_name.controllers.length;
+                        // cell onclick
+                        cell.onclick = function(func, id) {
+                            return function() {
+                                showPinsOfFunction(func, id);
+                            }
+                        }(function_class, id)
                         
-                    }
-                    else controller_table_container.style.display = "none";
+                    })
+                    
+                    // show table
+                    controller_table_container.style.display = "block";
+                    document.getElementById("controller-filter-title").colSpan = function_name.controllers.length;
                     
                 }
-            }(function_name, function_class)
+                else controller_table_container.style.display = "none";
+                
+            }
+        }(function_name, function_class)
             
-        }
+
         
     }
     
