@@ -375,14 +375,17 @@ function showPinInfo(pin_name, pin_description, pin_detailed_description, functi
             // id cell
             var id_cell = func_row.insertCell(-1);
             id_cell.innerText = func_id;
+            id_cell.classList.add("alt-pin-id");
 
             // signal name cel
             var name_cell = func_row.insertCell(-1);
             name_cell.innerText = func.name;
+            name_cell.classList.add("alt-pin-name");
 
             // description cell
             var desc_cell = func_row.insertCell(-1);
             desc_cell.innerText = func.description;
+            desc_cell.classList.add("alt-pin-desc");
 
         })
     }

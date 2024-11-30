@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Varela+Round&display=swap');
+
 * {
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Nunito", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Varela Round", sans-serif;
 }
   
 html, body { 
@@ -216,6 +222,10 @@ table {
     height: 25px;
 }
 
+#selected-pin-name {
+    font-family: "IBM Sans Mono", monospace;
+}
+
 #selected-pin-details {
     text-align: left;
 }
@@ -229,10 +239,17 @@ table {
     margin: auto;
 }
 
+.alt-pin-name {
+    font-family: "IBM Sans Mono", monospace;
+}
 
 
 *[class^="pin-class-"], *[class*=" pin-class-"] {
     cursor: pointer;
+}
+
+.pin-name {
+    font-family: "IBM Sans Mono", monospace;
 }
 
 .pin-name:hover {
