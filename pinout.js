@@ -100,7 +100,6 @@ function populateFunctionTable()
         function_cell.title = function_name.description;
         
         // colspan and rowspan
-        console.error(function_name)
         if ("colspan" in function_name) function_cell.colSpan = function_name.colspan;
         if ("rowspan" in function_name) function_cell.rowSpan = function_name.rowspan;
 
@@ -171,6 +170,16 @@ function populateFunctionTable()
         }(function_name, function_class)
             
 
+        // setup css classes for functions
+        let sheet = window.document.styleSheets[0];
+
+        if ("color" in function_name) {
+            sheet.insertRule(`.pin-class-${function_class} { color: ${function_name.color}; }`, sheet.cssRules.length);
+        }
+        if ("background-color" in function_name) {
+            console.warn(`.pin-class-${function_class} { background-color: ${function_name["background-color"]}; }`)
+            sheet.insertRule(`.pin-class-${function_class} { background-color: ${function_name["background-color"]}; }`, sheet.cssRules.length);
+        }
         
     }
     
@@ -324,6 +333,15 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                             pin_element.title = alt_function.description;
                             pin_element.classList.add("pin-class-" + alt_function.class)
                             
+                            // add pin number
+                            let pin_left_num = document.createElement("div");
+                            pin_left_num.innerText = pin_id + 1;
+                            pin_left_num.classList.add("pin-number")
+                            if (pin_description.dir == "w" || pin_description.dir == "s") 
+                                pin_element.append(pin_left_num);
+                            else
+                                pin_element.prepend(pin_left_num);
+
                             found_matching_function = true;
                             found_matching_alt_function = true;
                         

@@ -20,6 +20,8 @@
                 { "name": "1.8V Output", "id": "1v8" },
                 { "name": "GPIO VRef", "id": "gpio" }
             ],
+            "color": "white",
+            "background-color": "red",
             "row": 1,
             "col": 0
         },
@@ -28,6 +30,8 @@
             "description": "Ground connections", 
             "detailed_description": "",
             "class": "gnd",
+            "color": "white",
+            "background-color": "black",
             "row": 1,
             "col": 1
         },
@@ -37,6 +41,8 @@
             "description": "Raspberry Pi System pins", 
             "detailed_description": "These are pins for controlling and monitoring the Raspberry Pi system. <ul> <li>Wifi and Bluetooth disable pins</li> <li>Power and actvity output LEDs</li> <li>Reset and shutdown pins</li> <li>Many more</li> </ul>",
             "class": "rpi",
+            "color": "white",
+            "background-color": "#c95767",
             "row": 2,
             "col": 0
         },
@@ -44,6 +50,8 @@
             "name": "GPIO", 
             "description": "General Purpose Input / Output",
             "detailed_description": "Pins that can be used as digital inputs or outputs as needed.  See <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#general-purpose-io-gpio'>the Raspberry Pi documentation</a>",
+            "color": "black",
+            "background-color": "#F0F8F0",
             "row": 2,
             "col": 1
         },
@@ -57,6 +65,8 @@
                 { "name": "1" },
                 { "name": "2" }
             ],
+            "color": "black",
+            "background-color": "#00ffff",
             "row": 3,
             "col": 0
         },
@@ -67,13 +77,20 @@
             "detailed_description": "",
             "class": "i2c",
             "controllers": [
-                { "name": "0", "other_classes": ["hat-i2c"] },
+                { 
+                    "name": "0", 
+                    "other_classes": ["hat-i2c"] ,
+                    "color": "black",
+                    "background-color": "orange"
+                },
                 { "name": "1" },
                 { "name": "3" },
                 { "name": "4" },
                 { "name": "5" },
                 { "name": "6" }
             ],
+            "color": "black",
+            "background-color": "#FF00FF",
             "row": 4,
             "col": 0
         },
@@ -89,6 +106,8 @@
                 { "name": "5" },
                 { "name": "6" }
             ],
+            "color": "black",
+            "background-color": "#FF99CC",
             "row": 4,
             "col": 1
         },
@@ -105,6 +124,8 @@
                 { "name": "4" },
                 { "name": "5" }
             ],
+            "color": "white",
+            "background-color": "#FF0000",
             "row": 5,
             "col": 0
         },
@@ -117,6 +138,8 @@
                 { "name": "0" },
                 { "name": "1" }
             ],
+            "color": "black",
+            "background-color": "#32CCCC",
             "row": 5,
             "col": 1
         },
@@ -126,6 +149,8 @@
             "name": "USB",
             "description": "Universal Serial Bus",
             "detailed_description": "Hardware USB controller.  Details are available on the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#universal-serial-bus-usb'>Raspberry Pi documentation</a>",
+            "color": "white",
+            "background-color": "#005094",
             "row": 6,
             "col": 0
         },
@@ -133,6 +158,8 @@
             "name": "Ethernet", 
             "description": "Gigabit Ethernet",
             "detailed_description": "",
+            "color": "white",
+            "background-color": "green",
             "row": 6,
             "col": 1
         },
@@ -141,6 +168,8 @@
             "name": "PCIe", 
             "description": "Peripheral Component Interconnect Express",
             "detailed_description": "",
+            "color": "white",
+            "background-color": "rgb(0, 0, 77)",
             "row": 7,
             "col": 0
         },
@@ -149,6 +178,8 @@
             "name": "PWM", 
             "description": "Pulse Width Modulation",
             "detailed_description": "",
+            "color": "black",
+            "background-color": "#99CCFF",
             "row": 8,
             "col": 0
         },
@@ -156,6 +187,8 @@
             "name": "PCM", 
             "description": "Pulse Code Modulation",
             "detailed_description": "",
+            "color": "black",
+            "background-color": "#99CC00",
             "row": 8,
             "col": 1
         },
@@ -165,6 +198,8 @@
             "description": "Secondary Memory Interface", 
             "detailed_description": "",
             "class": "smi",
+            "color": "white",
+            "background-color": "#3265FF",
             "row": 9,
             "col": 0
         },
@@ -172,6 +207,8 @@
             "name": "JTAG", 
             "description": "Joint Test Action Group Interface",
             "detailed_description": "Protocol for external programming and debugging and testing",
+            "color": "black",
+            "background-color": "#BFBFBF",
             "row": 9,
             "col": 1
         },
@@ -184,6 +221,8 @@
                 { "name": "0" },
                 { "name": "1" }
             ],
+            "color": "white",
+            "background-color": "purple",
             "row": 10,
             "col": 0
         },
@@ -191,6 +230,8 @@
             "name": "TV", 
             "description": "Analogue TV Video Output",
             "detailed_description": "Analogue TV Video Output, commonly used with RCA / Phono / Composite connectors.",
+            "color": "black",
+            "background-color": "#ffff92",
             "row": 10,
             "col": 1
         },
@@ -199,6 +240,8 @@
             "name": "DPI", 
             "description": "Display Parallel Interface",
             "detailed_description": "Parallel interface for controlling LCD displays.  See the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi'>Raspberry Pi documentation</a>",
+            "color": "black",
+            "background-color": "#FFFF00",
             "row": 11,
             "col": 0
         },
@@ -210,6 +253,8 @@
                 { "name": "0" },
                 { "name": "1" }
             ],
+            "color": "black",
+            "background-color": "lightgreen",
             "row": 11,
             "col": 1
         },
@@ -222,6 +267,8 @@
                 { "name": "0" },
                 { "name": "1" }
             ],
+            "color": "black",
+            "background-color": "lightpink",
             "row": 12,
             "col": 0
         },
@@ -229,6 +276,8 @@
             "name": "Reserved", 
             "description": "Pins reserved for future use",
             "detailed_description": "",
+            "color": "black",
+            "background-color": "#4F6227",
             "row": 12,
             "col": 1
         }
@@ -2155,7 +2204,7 @@
         },
         {
             "name": "PCIe_CLK_nREQ",
-            "description": "Input (3.3V signal) PCIe Clock request pin (lock to request PCI clock).  Internal pulled up",
+            "description": "Input (3.3V signal) PCIe Clock request pin (low to request PCI clock).  Internal pulled up",
             "class": "pcie",
             "col": 0,
             "row": 49,
