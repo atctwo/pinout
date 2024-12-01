@@ -187,6 +187,23 @@ function populateFunctionTable()
             console.warn(`.pin-class-${function_class} { background-color: ${function_name["background-color"]}; }`)
             sheet.insertRule(`.pin-class-${function_class} { background-color: ${function_name["background-color"]}; }`, sheet.cssRules.length);
         }
+
+        // check each controller as well
+        if ("controllers" in function_name) {
+            function_name.controllers.forEach(controller => {
+                if ("other_classes" in controller) {
+                    controller.other_classes.forEach(oc => {
+                        if ("color" in controller) {
+                            sheet.insertRule(`.pin-class-${oc} { color: ${controller.color}; }`, sheet.cssRules.length);
+                        }
+                        if ("background-color" in controller) {
+                            console.warn(`.${oc} { background-color: ${controller["background-color"]}; }`)
+                            sheet.insertRule(`.${oc} { background-color: ${controller["background-color"]}; }`, sheet.cssRules.length);
+                        }
+                    });
+                }
+            });
+        }
         
     }
     
