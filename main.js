@@ -48,6 +48,7 @@ window.onload = () => {
     // get handles to stuff
     let loading_container = document.getElementById("loading-container");
     let welcome_container = document.getElementById("welcome-container");
+    let error_container = document.getElementById("error-container");
     let table_container = document.getElementById("table-container");
     let device_list = document.getElementById("device-list");
     let sidebar_tools = document.getElementById("sidebar-tools");
@@ -55,6 +56,9 @@ window.onload = () => {
     let sidebar_desc = document.getElementById("sidebar-desc");
     let sidebar_device_image = document.getElementById("sidebar-device-image");
     let sidebar_device_name = document.getElementById("sidebar-device-name");
+    let error_info = document.getElementById("error-info");
+    let error_code = document.getElementById("error-code");
+    let error_msg = document.getElementById("error-msg");
 
     // get device from url
     let params = new URLSearchParams(document.location.search);
@@ -104,13 +108,25 @@ window.onload = () => {
     {
         // get device from list of devices
         if (!(device in devices)) {
+
             console.error("Invalid device name");
+            error_info.innerText = "Device with ID \"" + device + "\" does not exist";
+            error_code.style.display = "none";
+
+            loading_container.style.display = "none";
+            error_container.style.display = "block";
+
         } else {
 
             // get device info
             let dev = devices[device];
             fetch(dev.url).then(res => {
-                return res.json()
+
+                if (!res.ok) {
+                    throw new Error(`Got status code ${res.status} (${res.statusText}) fetching device manifest at ${dev.url}`, {cause: res});
+                }
+                else return res.json()
+
             }).then(device_info => {
 
                 // store device info in window so pinout code can access it
@@ -140,6 +156,11 @@ window.onload = () => {
             }).catch(err => {
 
                 console.error("Error getting device info:", err);
+                error_info.innerText = "Sorry!  There was a problem loading the pinout for the " + dev.name + ":";
+                error_msg.innerText = err;
+
+                loading_container.style.display = "none";
+                error_container.style.display = "block";
 
             })
 

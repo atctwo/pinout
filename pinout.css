@@ -154,6 +154,11 @@ html, body {
     padding: 20px;
 }
 
+#error-container {
+    display: none;
+    padding: 20px;
+}
+
 #loading-container {
     width: 100%;
     display: flex;
