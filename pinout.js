@@ -241,6 +241,17 @@ function showPinFunction(pin_id, function_name, controller_id=null)
     var pin_description = pinout.pins[pin_id];
     console.debug("pin description:", pin_description)
     
+    // function to add the pin number
+    function add_pin_num() {
+        let pin_left_num = document.createElement("div");
+        pin_left_num.innerText = pin_id + 1;
+        pin_left_num.classList.add("pin-number")
+        if (pin_description.dir == "w" || pin_description.dir == "s") 
+            pin_element.append(pin_left_num);
+        else
+            pin_element.prepend(pin_left_num);
+    }
+
     if (pin_element)
     {        
         // remove hide class
@@ -262,13 +273,8 @@ function showPinFunction(pin_id, function_name, controller_id=null)
             pin_element.classList.add("pin-class-" + pin_description.class)
 
             // add pin number
-            let pin_left_num = document.createElement("div");
-            pin_left_num.innerText = pin_id + 1;
-            pin_left_num.classList.add("pin-number")
-            if (pin_description.dir == "w" || pin_description.dir == "s") 
-                pin_element.append(pin_left_num);
-            else
-                pin_element.prepend(pin_left_num);
+            add_pin_num();
+            
         }
         // otherwise, show pins of the specified function
         else
@@ -310,15 +316,6 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                 pin_element.title = pin_description.description;
                 pin_element.classList.add("pin-class-" + pin_description.class)
                 found_matching_function = true;
-
-                // add pin number
-                let pin_left_num = document.createElement("div");
-                pin_left_num.innerText = pin_id + 1;
-                pin_left_num.classList.add("pin-number")
-                if (pin_description.dir == "w" || pin_description.dir == "s") 
-                    pin_element.append(pin_left_num);
-                else
-                    pin_element.prepend(pin_left_num);
             }
             
             // check alt functions
@@ -356,15 +353,6 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                             pin_element.innerText += alt_function.name;
                             pin_element.title = alt_function.description;
                             pin_element.classList.add("pin-class-" + alt_function.class)
-                            
-                            // add pin number
-                            let pin_left_num = document.createElement("div");
-                            pin_left_num.innerText = pin_id + 1;
-                            pin_left_num.classList.add("pin-number")
-                            if (pin_description.dir == "w" || pin_description.dir == "s") 
-                                pin_element.append(pin_left_num);
-                            else
-                                pin_element.prepend(pin_left_num);
 
                             found_matching_function = true;
                             found_matching_alt_function = true;
@@ -391,6 +379,9 @@ function showPinFunction(pin_id, function_name, controller_id=null)
             {
                 console.debug(`pin ${pin_id} has no matching alt function`)
                 pin_element.classList.add("pin-class-hide")
+            } else {
+                // if at least one matching pin was found, add the pin number
+                add_pin_num();
             }
         }
     }
