@@ -125,23 +125,26 @@ function populateFunctionTable()
                 showPinInfo(function_name.name, function_name.description, function_name.detailed_description);
                 
                 // show controller table (if present)
-                var controller_table = document.getElementById("controller-filter");
-                var controller_table_container = document.getElementById("controller-filter-container");
+                let controller_table = document.getElementById("controller-filter");
+                let controller_table_container = document.getElementById("controller-filter-container");
                 if ("controllers" in function_name)
                 {
+                    // get whether the table should be vertical
+                    let vertical = ("filter_direction" in function_name && function_name.filter_direction == "vertical");
+
                     // remove existing controller entries
                     while (controller_table.rows.length > 1) controller_table.deleteRow(-1);
                     
                     // add new controller entries
-                    var row = controller_table.insertRow(-1);
+                    let row = controller_table.insertRow(-1);
                     function_name.controllers.forEach(controller => {
-                        
+
                         // make new cell
-                        var cell = row.insertCell(-1);
+                        let cell = row.insertCell(-1);
                         cell.innerText = controller.name;
                         
                         // determine controller id
-                        var id = "";
+                        let id = "";
                         if ("id" in controller) id = controller.id;
                         else                    id = controller.name.toLowerCase();
                         cell.classList.add("pin-class-" + function_class);
@@ -157,11 +160,15 @@ function populateFunctionTable()
                             }
                         }(function_class, id)
                         
-                    })
+                        // if this controller filter should be vertical, make a new row
+                        if (vertical) {
+                            row = controller_table.insertRow(-1);
+                        }
+                    });
                     
                     // show table
                     controller_table_container.style.display = "block";
-                    document.getElementById("controller-filter-title").colSpan = function_name.controllers.length;
+                    document.getElementById("controller-filter-title").colSpan = (vertical) ? 1 : function_name.controllers.length;
                     
                 }
                 else controller_table_container.style.display = "none";
