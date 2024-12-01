@@ -15,7 +15,31 @@ let devices = {
                 <li><a href="https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf">CM4 Datasheet</a></li>
                 <li><a href="https://elinux.org/RPi_BCM2711_GPIOs">eLinux.org BCM2711 GPIO Reference</a></li>
             </ul>`,
-        "url": "pinouts/cm4.json"
+        "url": "pinouts/cm4.json",
+        "img": "images/cm4_front.png"
+    },
+    "cm5": {
+        "name": "Raspberry Pi Compute Module 5",
+        "description": `
+            Following on from the Compute Module 4, the CM5 takes the improved hardware of the Raspberry Pi 5 and squeezes it into the same
+            200-pin form factor.  It's (mostly) pin-compatible with the CM4 but make sure to check the datasheet (or this pinout!) for changes.
+            <br><br>
+            The main changes are:
+            <ul>
+                <li>Upgrade to the BCM2712 SoC</li>
+                <li>The 2xDSI and 2xCSI ports have been replaced with two dual-purpose MIPI interfaces (that can either be used as a camera <em>or</em> display)</li>
+                <li>In the leftover space where a DSI and CSI were in the CM4, the CM5 provides two hardware USB3.0 interfaces</li>
+                <li>ESD protection on certain interfaces has been removed</li>
+                <li>The composite video output has been removed :(</li>
+            </ul>
+            Sources used:
+            <ul>
+                <li><a href="https://datasheets.raspberrypi.com/cm5/cm5-datasheet.pdf">CM5 Datasheet</a></li>
+                <li><a href="https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf">RP1 Peripherals Documentation</a></li>
+                <li><a href="https://github.com/Felipegalind0/RPI5.pinout">Felipegalind0's RPi 5 Pinout</a></li>
+            </ul>`,
+        "url": "pinouts/cm5.json",
+        "img": "images/cm5_front.png"
     }
 }
 
@@ -29,6 +53,7 @@ window.onload = () => {
     let sidebar_tools = document.getElementById("sidebar-tools");
     let sidebar_description = document.getElementById("sidebar-description");
     let sidebar_desc = document.getElementById("sidebar-desc");
+    let sidebar_device_image = document.getElementById("sidebar-device-image");
     let sidebar_device_name = document.getElementById("sidebar-device-name");
 
     // get device from url
@@ -43,12 +68,36 @@ window.onload = () => {
 
         // make list of supported devices
         for (let [dev_id, dev] of Object.entries(devices)) {
-            let li = document.createElement("li");
+            let div = document.createElement("div");
+            div.classList.add("welcome-device", "card");
+
+            let img = document.createElement("img");
+            img.src = dev.img;
+            img.classList.add("welcome-device-img")
+
+            let name = document.createElement("h5");
+            name.innerText = dev.name;
+            name.classList.add("welcome-device-name", "card-title");
+            
             let a = document.createElement("a");
-            a.innerText = dev.name;
             a.href = "/?device=" + dev_id;
-            li.append(a);
-            device_list.append(li);
+            a.classList.add("stretched-link");
+
+            div.append(img);
+            div.append(name);
+            div.append(a);
+            device_list.append(div);
+
+            // on hover
+            div.addEventListener("mouseenter", event => {
+
+                // set sidebar title and description
+                sidebar_device_name.innerHTML = dev.name;
+                sidebar_desc.innerHTML = dev.description;
+                sidebar_device_image.src = dev.img;
+                sidebar_description.style.display = "block";
+
+            });
         };
     }
     else
@@ -80,6 +129,7 @@ window.onload = () => {
                 // set sidebar title and description
                 sidebar_device_name.innerHTML = dev.name;
                 sidebar_desc.innerHTML = dev.description;
+                sidebar_device_image.src = dev.img;
 
                 // show table
                 loading_container.style.display = "none";

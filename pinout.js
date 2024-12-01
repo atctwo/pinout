@@ -197,7 +197,7 @@ function populateFunctionTable()
                             sheet.insertRule(`.pin-class-${oc} { color: ${controller.color}; }`, sheet.cssRules.length);
                         }
                         if ("background-color" in controller) {
-                            console.warn(`.${oc} { background-color: ${controller["background-color"]}; }`)
+                            console.warn(`.pin-class-${function_class}.${oc} { background-color: ${controller["background-color"]}; }`)
                             sheet.insertRule(`.${oc} { background-color: ${controller["background-color"]}; }`, sheet.cssRules.length);
                         }
                     });
