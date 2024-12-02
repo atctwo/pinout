@@ -1,74 +1,69 @@
 
 /**
+ * Generate the pin table with the specified number of rows and columns
+ */
+function generatePinTable() {
+
+    var pin_table = document.getElementById("pin-header-0");
+
+    for (row = 0; row < pinout.pin_rows; row++) {
+        let tr = pin_table.insertRow(-1);
+        tr.id = "pin-row-" + row;
+        for (col = 0; col < pinout.pin_cols; col++) {
+            let td = tr.insertCell(-1);
+            td.id = "pin-cell-" + row + "-" + col;
+        }
+    }
+
+}
+
+/**
  * Populate the 2 pin headers with pins
  */
 function populatePinHeaderTables()
 {
+    // get header table
+    var pin_table = document.getElementById("pin-header-0");
+
+    var pin_id = 0;
+
     // for each header
-    pinout.headers.forEach((header, header_num) => {
-        
-        // get header table
-        var header_table = document.getElementById(header.table_id);
-        
-        // add pins
-        for (var pin_num = 0; pin_num < header.pins.length; pin_num += 2)
-        {
-            // get pin
-            var pin_left  = header.pins[pin_num + 1];
-            var pin_right = header.pins[pin_num];
+    pinout.pins.forEach(pin => {
             
-            var pin_left_number  = pin_num + 2 + (header_num * 100);
-            var pin_right_number = pin_num + 1 + (header_num * 100);
-            
-            // add table row
-            var pin_row = header_table.insertRow(0);
-            
-            
-            // add left pin name
-            var pin_left_name = pin_row.insertCell(0);
+        // if both row and column are specified
+        if ( ("row" in pin) && ("col" in pin) ) {
+
+            // get cell for pin
+            console.log("pin-cell-" + pin.row + "-" + pin.col);
+            let pin_left_name = document.getElementById("pin-cell-" + pin.row + "-" + pin.col);
+
+            // add pin
             pin_left_name.classList.add("pin-name")
-            if ("other_classes" in pin_left) pin_left.other_classes.forEach(c => {
+            if ("other_classes" in pin) pin.other_classes.forEach(c => {
                 pin_left_name.classList.add(c)
             })
-            pin_left_name.id = "pin-" + pin_left_number;
-            showPinFunction(pin_left_number, null);
+            pin_left_name.id = "pin-" + pin_id;
+
+            // add pin direction class
+            if ("dir" in pin) pin_left_name.classList.add("pin-dir-" + pin.dir);
+            else pin.dir = "e";
+
+            // display pin
+            showPinFunction(pin_id, null);
+
+            // add onclick handler
+            pin_left_name.onclick = function() {
+                showPinInfo(pin.name, pin.description, pin.detailed_description, pin.functions)
+            }
             
-            pin_left_name.onclick = function(pin_num) {
-                return function() {
-                    var pin  = header.pins[pin_num];
-                    showPinInfo(pin.name, pin.description, pin.detailed_description, pin.functions)
-                }
-            }(pin_num + 1)
-            
-            // add left pin number
-            var pin_left_num = pin_row.insertCell(1);
-            pin_left_num.innerText = pin_left_number;
-            pin_left_num.classList.add("pin-number")
-            
-            
-            // add right pin number
-            var pin_right_num = pin_row.insertCell(2);
-            pin_right_num.innerText = pin_right_number;
-            pin_right_num.classList.add("pin-number")
-            
-            // add right pin name
-            var pin_right_name = pin_row.insertCell(3);
-            pin_right_name.classList.add("pin-name")
-            if ("other_classes" in pin_right) pin_right.other_classes.forEach(c => {
-                pin_right_name.classList.add(c)
-            })
-            pin_right_name.id = "pin-" + pin_right_number;
-            showPinFunction(pin_right_number, null);
-            
-            pin_right_name.onclick = function(pin_num) {
-                return function() {
-                    var pin  = header.pins[pin_num];
-                    showPinInfo(pin.name, pin.description, pin.detailed_description, pin.functions)
-                }
-            }(pin_num)
+    
         }
+
+        // increment pin id
+        pin_id += 1;
+    
+    });
         
-    })
 }
 
 /**
@@ -79,96 +74,141 @@ function populateFunctionTable()
     // get function table
     var func_table = document.getElementById("function-filter");
     
+    // create table
+    for (let row = 0; row < pinout.function_name_row; row++) {
+        let row_obj = func_table.insertRow(-1);
+        for (let col = 0; col < pinout.function_name_columns; col++) {
+            let cell = row_obj.insertCell(-1);
+            cell.id = "func-" + row + "-" + col;
+        }
+    }
+
     // add functions
-    for (var i = 0; i < function_names.length; i += function_name_columns) {
+    for (var i = 0; i < pinout.function_names.length; i++) {
         
-        // add row
-        var function_row = func_table.insertRow(-1);
+
+        var function_name = pinout.function_names[i]
         
-        for (var j = 0; j < function_name_columns; j++)
-        {
+        // check whether to skip the cell
+        if ("skip" in function_name && function_name.skip) continue;
+
+        // add cell
+        var function_cell = document.getElementById("func-" + function_name.row + "-" + function_name.col);
         
-            var function_name = function_names[i + j]
-            
-            // add cell
-            var function_cell = function_row.insertCell(-1);
-            
-            // cell text and tooltip
-            function_cell.innerText = function_name.name;
-            function_cell.title = function_name.description;
-            
-            // cell class
-            var function_class = "";
-            if ("class" in function_name) function_class = function_name.class;
-            else function_class = function_name.name.toLowerCase();
-            
-            function_cell.classList.add("pin-class-" + function_class)
-            
-            if ("other_classes" in function_name) function_name.other_classes.forEach(c => {
-                cell.classList.add(c)
-            })
-            
-            // cell onclick
-            function_cell.onclick = function (function_name, function_class) {
-                return function() {
+        // cell text and tooltip
+        function_cell.innerText = function_name.name;
+        function_cell.title = function_name.description;
+        
+        // colspan and rowspan
+        if ("colspan" in function_name) function_cell.colSpan = function_name.colspan;
+        if ("rowspan" in function_name) function_cell.rowSpan = function_name.rowspan;
+
+        // cell class
+        var function_class = "";
+        if ("class" in function_name) function_class = function_name.class;
+        else function_class = function_name.name.toLowerCase();
+        
+        function_cell.classList.add("pin-class-" + function_class)
+        
+        if ("other_classes" in function_name) function_name.other_classes.forEach(c => {
+            cell.classList.add(c)
+        })
+        
+        // cell onclick
+        function_cell.onclick = function (function_name, function_class) {
+            return function() {
+                
+                // show pins of that function
+                showPinsOfFunction(function_class);
+                
+                // show function info in pin info box
+                showPinInfo(function_name.name, function_name.description, function_name.detailed_description);
+                
+                // show controller table (if present)
+                let controller_table = document.getElementById("controller-filter");
+                let controller_table_container = document.getElementById("controller-filter-container");
+                if ("controllers" in function_name)
+                {
+                    // get whether the table should be vertical
+                    let vertical = ("filter_direction" in function_name && function_name.filter_direction == "vertical");
+
+                    // remove existing controller entries
+                    while (controller_table.rows.length > 1) controller_table.deleteRow(-1);
                     
-                    // show pins of that function
-                    showPinsOfFunction(function_class);
-                    
-                    // show function info in pin info box
-                    showPinInfo(function_name.name, function_name.description, function_name.detailed_description);
-                    
-                    // show controller table (if present)
-                    var controller_table = document.getElementById("controller-filter");
-                    var controller_table_container = document.getElementById("controller-filter-container");
-                    if ("controllers" in function_name)
-                    {
-                        // remove existing controller entries
-                        while (controller_table.rows.length > 1) controller_table.deleteRow(-1);
+                    // add new controller entries
+                    let row = controller_table.insertRow(-1);
+                    function_name.controllers.forEach(controller => {
+
+                        // make new cell
+                        let cell = row.insertCell(-1);
+                        cell.innerText = controller.name;
                         
-                        // add new controller entries
-                        var row = controller_table.insertRow(-1);
-                        function_name.controllers.forEach(controller => {
-                            
-                            // make new cell
-                            var cell = row.insertCell(-1);
-                            cell.innerText = controller.name;
-                            
-                            // determine controller id
-                            var id = "";
-                            if ("id" in controller) id = controller.id;
-                            else                    id = controller.name.toLowerCase();
-                            cell.classList.add("pin-class-" + function_class);
-                            
-                            if ("other_classes" in controller) controller.other_classes.forEach(c => {
-                                cell.classList.add(c)
-                            })
-                            
-                            // cell onclick
-                            cell.onclick = function(func, id) {
-                                return function() {
-                                    showPinsOfFunction(func, id);
-                                }
-                            }(function_class, id)
-                            
+                        // determine controller id
+                        let id = "";
+                        if ("id" in controller) id = controller.id;
+                        else                    id = controller.name.toLowerCase();
+                        cell.classList.add("pin-class-" + function_class);
+                        
+                        if ("other_classes" in controller) controller.other_classes.forEach(c => {
+                            cell.classList.add(c)
                         })
                         
-                        // show table
-                        controller_table_container.style.display = "block";
-                        document.getElementById("controller-filter-title").colSpan = function_name.controllers.length;
+                        // cell onclick
+                        cell.onclick = function(func, id) {
+                            return function() {
+                                showPinsOfFunction(func, id);
+                            }
+                        }(function_class, id)
                         
-                    }
-                    else controller_table_container.style.display = "none";
+                        // if this controller filter should be vertical, make a new row
+                        if (vertical) {
+                            row = controller_table.insertRow(-1);
+                        }
+                    });
+                    
+                    // show table
+                    controller_table_container.style.display = "block";
+                    document.getElementById("controller-filter-title").colSpan = (vertical) ? 1 : function_name.controllers.length;
                     
                 }
-            }(function_name, function_class)
+                else controller_table_container.style.display = "none";
+                
+            }
+        }(function_name, function_class)
             
+
+        // setup css classes for functions
+        let sheet = window.document.styleSheets[0];
+
+        if ("color" in function_name) {
+            sheet.insertRule(`.pin-class-${function_class} { color: ${function_name.color}; }`, sheet.cssRules.length);
+        }
+        if ("background-color" in function_name) {
+            console.warn(`.pin-class-${function_class} { background-color: ${function_name["background-color"]}; }`)
+            sheet.insertRule(`.pin-class-${function_class} { background-color: ${function_name["background-color"]}; }`, sheet.cssRules.length);
+        }
+
+        // check each controller as well
+        if ("controllers" in function_name) {
+            function_name.controllers.forEach(controller => {
+                if ("other_classes" in controller) {
+                    controller.other_classes.forEach(oc => {
+                        if ("color" in controller) {
+                            sheet.insertRule(`.pin-class-${oc} { color: ${controller.color}; }`, sheet.cssRules.length);
+                        }
+                        if ("background-color" in controller) {
+                            console.warn(`.pin-class-${function_class}.${oc} { background-color: ${controller["background-color"]}; }`)
+                            sheet.insertRule(`.${oc} { background-color: ${controller["background-color"]}; }`, sheet.cssRules.length);
+                        }
+                    });
+                }
+            });
         }
         
     }
     
     // set title colspan
-    document.getElementById("function-filter-title").colSpan = function_name_columns;
+    document.getElementById("function-filter-title").colSpan = pinout.function_name_columns;
 }
 
 /**
@@ -178,7 +218,7 @@ function populateFunctionTable()
  */
 function showPinsOfFunction(function_name, controller_id=null)
 {
-    for (var i = 1; i <= 200; i++)
+    for (var i = 0; i < pinout.pins.length; i++)
     {
         showPinFunction(i, function_name, controller_id);
     }
@@ -187,7 +227,7 @@ function showPinsOfFunction(function_name, controller_id=null)
 /**
  * Show a pin in the context of a certain function (if it supports it, including as an alternate function)
  * @param {number} pin_id the number of the pin to show
- * @param {string} function_name the name of the function to show
+ * @param {string} function_name the name of the function to show (null for default)
  * @param {string} controller_id the id of the specific controller to show the pins for (null shows all pins of that function)
  */
 function showPinFunction(pin_id, function_name, controller_id=null)
@@ -197,15 +237,21 @@ function showPinFunction(pin_id, function_name, controller_id=null)
     // get pin element
     var pin_element = document.getElementById(`pin-${pin_id.toString()}`);
     
-    // get pin position
-    var header_num = Math.floor((pin_id-1)/100);
-    var pin_num = (pin_id-1) % 100;
-    console.debug(`header ${header_num}, pin ${pin_num}`)
-    
     // get pin description
-    var pin_description = pinout.headers[header_num].pins[pin_num];
+    var pin_description = pinout.pins[pin_id];
     console.debug("pin description:", pin_description)
     
+    // function to add the pin number
+    function add_pin_num() {
+        let pin_left_num = document.createElement("div");
+        pin_left_num.innerText = pin_id + 1;
+        pin_left_num.classList.add("pin-number")
+        if (pin_description.dir == "w" || pin_description.dir == "s") 
+            pin_element.append(pin_left_num);
+        else
+            pin_element.prepend(pin_left_num);
+    }
+
     if (pin_element)
     {        
         // remove hide class
@@ -215,16 +261,20 @@ function showPinFunction(pin_id, function_name, controller_id=null)
         if (!function_name)
         {
             // remove any existing pin classes
-            function_names.forEach(func => {
+            pinout.function_names.forEach(func => {
                 var func_class = "";
                 if ("class" in func) func_class = func.class;
                 else func_class = func.name.toLowerCase();
                 pin_element.classList.remove("pin-class-" + func_class)
             });
             
-            pin_element.innerText = pin_description.name;
+            pin_element.innerHTML = pin_description.name;
             pin_element.title = pin_description.description;
             pin_element.classList.add("pin-class-" + pin_description.class)
+
+            // add pin number
+            add_pin_num();
+            
         }
         // otherwise, show pins of the specified function
         else
@@ -255,7 +305,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                 }
                 
                 // remove any existing pin classes
-                function_names.forEach(func => {
+                pinout.function_names.forEach(func => {
                     var func_class = "";
                     if ("class" in func) func_class = func.class;
                     else func_class = func.name.toLowerCase();
@@ -291,7 +341,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                             if (found_matching_function) pin_element.innerText += ", ";
                             else {
                                 // remove any existing pin classes
-                                function_names.forEach(func => {
+                                pinout.function_names.forEach(func => {
                                     var func_class = "";
                                     if ("class" in func) func_class = func.class;
                                     else func_class = func.name.toLowerCase();
@@ -303,7 +353,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
                             pin_element.innerText += alt_function.name;
                             pin_element.title = alt_function.description;
                             pin_element.classList.add("pin-class-" + alt_function.class)
-                            
+
                             found_matching_function = true;
                             found_matching_alt_function = true;
                         
@@ -329,6 +379,9 @@ function showPinFunction(pin_id, function_name, controller_id=null)
             {
                 console.debug(`pin ${pin_id} has no matching alt function`)
                 pin_element.classList.add("pin-class-hide")
+            } else {
+                // if at least one matching pin was found, add the pin number
+                add_pin_num();
             }
         }
     }
@@ -340,6 +393,7 @@ function showPinFunction(pin_id, function_name, controller_id=null)
 
 function showPinInfo(pin_name, pin_description, pin_detailed_description, functions=null)
 {
+    // update info panel with pin info
     document.getElementById("selected-pin-name").innerText = pin_name;
     if (pin_detailed_description) document.getElementById("selected-pin-description").innerHTML = pin_detailed_description;
     else if (pin_description) document.getElementById("selected-pin-description").innerText = pin_description;
@@ -366,14 +420,17 @@ function showPinInfo(pin_name, pin_description, pin_detailed_description, functi
             // id cell
             var id_cell = func_row.insertCell(-1);
             id_cell.innerText = func_id;
+            id_cell.classList.add("alt-pin-id");
 
             // signal name cel
             var name_cell = func_row.insertCell(-1);
             name_cell.innerText = func.name;
+            name_cell.classList.add("alt-pin-name");
 
             // description cell
             var desc_cell = func_row.insertCell(-1);
             desc_cell.innerText = func.description;
+            desc_cell.classList.add("alt-pin-desc");
 
         })
     }
@@ -388,42 +445,25 @@ function searchForSignal(fuse, pattern)
     console.log(results)
 
     // store each match
-    results.forEach((header, header_id) => {
+    results.forEach((pin) => {
+       
+        // get pin id
+        let pin_id = pin.refIndex;
+        matches.push(pin_id);
 
-        console.log(header_id)
-
-        // get the header table element
-        var header_table = document.getElementById(header.item.table_id);
-
-        // store the pin number of each match
-        header.matches.forEach(match => {
-
-            var pin_id = match.refIndex + 1 + (100 * header.refIndex);
-            console.log(`pin id ${pin_id}`)
-            console.log(match)
-            matches.push(pin_id)
-
-        })
     });
 
-    console.log(matches)
+    for (var i = 0; i < pinout.pins.length; i++) {
 
-    // highlight stored matches
-    for (var i = 1; i <= 200; i++)
-    {
         // get pin element
-        var pin_element = document.getElementById(`pin-${i}`);
+        let pin_element = document.getElementById(`pin-${i}`);
+                
+        // set hide class
+        if (matches.includes(i)) pin_element.classList.remove("pin-class-hide");
+        else pin_element.classList.add("pin-class-hide");
 
-        // remove hide class
-        pin_element.classList.remove("pin-class-hide");
-
-        // if pin id isn't in matches
-        if (!matches.includes(i))
-        {
-            // set pin transparency
-            pin_element.classList.add("pin-class-hide");
-        }
     }
+                
 }
 
 function signalSearch()
@@ -444,32 +484,31 @@ function toggleSidebar()
     else sidebar.style.display = "block";
 }
 
+function setupSearch() {
 
-// setup Fuse.js fuzzy searching
-const options = {
-    // isCaseSensitive: false,
-    // includeScore: false,
-    // shouldSort: true,
-    includeMatches: true,
-    // findAllMatches: false,
-    // minMatchCharLength: 1,
-    // location: 0,
-    threshold: 0.3,
-    // distance: 100,
-    useExtendedSearch: true,
-    // ignoreLocation: false,
-    // ignoreFieldNorm: false,
-    // fieldNormWeight: 1,
-    keys: [
-      "pins.name",
-      "pins.description",
-      "pins.functions.name",
-      "pins.functions.description"
-    ]
-  };
-var pin_fuse = new Fuse(pinout.headers, options)
+    // setup Fuse.js fuzzy searching
+    const options = {
+        // isCaseSensitive: false,
+        // includeScore: false,
+        // shouldSort: true,
+        includeMatches: true,
+        // findAllMatches: false,
+        // minMatchCharLength: 1,
+        // location: 0,
+        threshold: 0.3,
+        // distance: 100,
+        // useExtendedSearch: true,
+        // ignoreLocation: false,
+        // ignoreFieldNorm: false,
+        // fieldNormWeight: 1,
+        keys: [
+            "name",
+            "description",
+            "functions.name",
+            "functions.description"
+        ]
+    };
 
+    window.pin_fuse = new Fuse(pinout.pins, options)
 
-// populate tables on page load
-populatePinHeaderTables();
-populateFunctionTable();
+}

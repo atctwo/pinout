@@ -1,0 +1,3452 @@
+{
+    "function_name_row": 12,
+    "function_name_columns": 2,
+    "function_names" : [
+        {
+            "name": "All Pins", 
+            "description": "Show all pins", 
+            "detailed_description": "",
+            "class": null,
+            "row": 0,
+            "col": 0
+        },      
+        {
+            "name": "Power", 
+            "description": "Power inputs and outputs",
+            "detailed_description": "These are the CM4's power input and output pins: <ul> <li>6 x 5V input pins</li> <li>2 x 1.8V Output pins</li> <li>2 x 3.3V Output pins</li> <li>GPIO_VREF, which controls whether the GPIO pins operate at 3v3 or 1v8</li> </ul>",
+            "controllers": [
+                { "name": "5V Input", "id": "5v" },
+                { "name": "3.3V Output", "id": "3v3" },
+                { "name": "1.8V Output", "id": "1v8" },
+                { "name": "GPIO VRef", "id": "gpio" }
+            ],
+            "color": "white",
+            "background-color": "red",
+            "row": 0,
+            "col": 1
+        },
+        {
+            "name": "Ground", 
+            "description": "Ground connections", 
+            "detailed_description": "",
+            "class": "gnd",
+            "color": "white",
+            "background-color": "black",
+            "row": 1,
+            "col": 1
+        },
+        
+        {
+            "name": "System", 
+            "description": "Raspberry Pi System pins", 
+            "detailed_description": "These are pins for controlling and monitoring the Raspberry Pi system. <ul> <li>Wifi and Bluetooth disable pins</li> <li>Power and actvity output LEDs</li> <li>Reset and shutdown pins</li> <li>Fan control</li> </ul>",
+            "class": "rpi",
+            "controllers": [
+                {"name": "Wireless", "id": "wireless"},
+                {"name": "CAM_GPIO", "id": "cam_gpio"},
+                {"name": "USB-C CC", "id": "usb_c_cc"},
+                {"name": "Fan Control", "id": "fan"},
+                {"name": "Boot", "id": "boot"},
+                {"name": "Power", "id": "power"},
+                {"name": "LEDs", "id": "leds"}
+            ],
+            "filter_direction": "vertical",
+            "color": "white",
+            "background-color": "#C01F4C",
+            "row": 1,
+            "col": 0
+        },
+        {
+            "name": "PIO",
+            "description": "Programmable IO",
+            "detailed_description": "Originally included on the RP2040, the Programmable IO interface provides a series of hardware state machines, programmable using a domain-specific assembly language.  This effectively allows one to create custom software-defined hardware peripherals, freeing up the CPU for other tasks.\nAt the time of writing there isn't much documentation on how to use this peripheral with the CM5",
+            "color": "white",
+            "background-color": "#c95767",
+            "row": 2,
+            "col": 0
+        },
+        {
+            "name": "RIO",
+            "description": "Registered IO",
+            "detailed_description": "An interface which allows the host processor to manipulate GPIOs directly.  This is a feature of the RP1 coprocessor.  There's isn't that much documentation on it at the time of writing, so check the <a href='https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf'>RP1 Peripherals Documentation</a> for more info.",
+            "color": "white",
+            "background-color": "#53CD62",
+            "row": 2,
+            "col": 1
+        },
+        {
+            "name": "GPIO", 
+            "description": "General Purpose Input / Output",
+            "detailed_description": "Pins that can be used as digital inputs or outputs as needed.  See <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#general-purpose-io-gpio'>the Raspberry Pi documentation</a>",
+            "color": "black",
+            "background-color": "#F0F8F0",
+            "row": 3,
+            "col": 0
+        },
+        
+        {
+            "name": "GPCLK", 
+            "description": "General Purpose Clock",
+            "detailed_description": "Can be configured to output a fixed frequency on a pin.  There's not much documentation on this, but <a href='https://pinout.xyz/pinout/gpclk'>pinout.xyz</a> has an introduction",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" },
+                { "name": "2" }
+            ],
+            "color": "black",
+            "background-color": "#00ffff",
+            "row": 3,
+            "col": 1
+        },
+        
+        {
+            "name": "I2C", 
+            "description": "Inter-integrated Circuit",
+            "class": "i2c",
+            "controllers": [
+                { 
+                    "name": "mipi",
+                    "other_classes": ["mipi-i2c"],
+                    "color": "black",
+                    "background-color": "#8EEE7F"
+                },
+                { "name": "0" },
+                { "name": "1" },
+                { "name": "2" },
+                { "name": "3" },
+                { "name": "4" }
+            ],
+            "color": "black",
+            "background-color": "#FF00FF",
+            "row": 4,
+            "col": 0
+        },
+        {
+            "name": "I2S",
+            "description": "Inter-IC Sound",
+            "detailed_description": "PCM-based interface for moving high quality multi-channel digital audio",
+            "color": "white",
+            "background-color": "#3263F0",
+            "row": 4,
+            "col": 1
+        },
+        {
+            "name": "SPI", 
+            "description": "Serial Peripheral Interface",
+            "detailed_description": "SPI Controller.  The CM4 has 7 SPI controllers, details are on <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#serial-peripheral-interface-spi'>the Raspberry Pi documentation</a>",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" },
+                { "name": "2" },
+                { "name": "3" },
+                { "name": "4" },
+                { "name": "5" }
+            ],
+            "color": "black",
+            "background-color": "#FF99CC",
+            "row": 5,
+            "col": 0
+        },
+        {
+            "name": "PWM", 
+            "description": "Pulse Width Modulation",
+            "color": "black",
+            "background-color": "#99CCFF",
+            "row": 5,
+            "col": 1
+        },
+        {
+            "name": "UART", 
+            "description": "Universal Asynchronous Receiver Transmitter",
+            "detailed_description": "UART1 - UART4 support the regular 4-wire interface (TX, RX, CTS, RTS), where UART0 supports <em>either</em> an 8-wire interface (TX, RX, CTS, RTS, DTR, DCD, DSR, RI), or an IrDA interface (IR_TX, IR_RX).",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" },
+                { "name": "2" },
+                { "name": "3" },
+                { "name": "4" }
+            ],
+            "color": "white",
+            "background-color": "#FF0000",
+            "row": 6,
+            "col": 0
+        },
+        {
+            "name": "Audio In",
+            "description": "PDM Audio Input",
+            "class": "audio_in",
+            "color": "white",
+            "background-color": "#729800",
+            "row": 6,
+            "col": 1
+        },
+        {
+            "name": "Audio Out",
+            "description": "PWM Audio Output",
+            "detailed_description": "PWM Audio which requires buffering using a low noise PSU noise buffer and filtering with a 22 kHz 1st order RC network",
+            "class": "audio_out",
+            "color": "white",
+            "background-color": "#97CA00",
+            "row": 7,
+            "col": 1
+        },
+        {
+            "name": "SDIO", 
+            "description": "Secure Digital Input Output",
+            "detailed_description": "Used to connect the CM5 Lite to an SD Card.  If not using a CM5 Lite, this is used for the onboard eMMC, and shouldn't be used.",
+            "controllers": [
+                { "name": "SD / eMMC", "id": "0"}
+            ],
+            "color": "black",
+            "background-color": "#32CCCC",
+            "row": 7,
+            "col": 0
+        },
+        {
+            "name": "PCIe", 
+            "description": "Peripheral Component Interconnect Express",
+            "detailed_description": "PCIe Gen2 x 1 controller.  May be operated as a Gen3.0 controller but this mode is unsupported",
+            "color": "white",
+            "background-color": "rgb(0, 0, 77)",
+            "row": 8,
+            "col": 0
+        },
+        {
+            "name": "Ethernet", 
+            "description": "Gigabit Ethernet",
+            "detailed_description": "On-board 1G Ethernet using the <a href='https://www.broadcom.com/products/ethernet-connectivity/phy-and-poe/copper/gigabit/bcm54210'>BCM54210</a> PHY, which provides IEEE 1588-2008 features, MDI crossover, and pair skew and polarity correction.\nDesigned to be wired directly to a 1:1 RJ45 MagJack connector.",
+            "color": "white",
+            "background-color": "green",
+            "row": 9,
+            "col": 0
+        },
+        {
+            "name": "USB 2.0",
+            "description": "Universal Serial Bus, version 2.0.  P/N pairs within TX or RX signals may <b>not</b> be swapped",
+            "detailed_description": "",
+            "class": "usb2",
+            "color": "white",
+            "background-color": "#005094",
+            "row": 10,
+            "col": 0
+        },
+        {
+            "name": "USB 3.0",
+            "description": "Universal Serial Bus, version 3.0.  P/N pairs within TX or RX signals may be swapped (but not the USB2 signal)",
+            "detailed_description": "",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" }
+            ],
+            "class": "usb3",
+            "color": "white",
+            "background-color": "#0C9BEA",
+            "row": 11,
+            "col": 0
+        },
+        {
+            "name": "DPI", 
+            "description": "Display Parallel Interface",
+            "detailed_description": "Parallel interface for controlling LCD displays.  See the <a href='https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi'>Raspberry Pi documentation</a>",
+            "color": "black",
+            "background-color": "#FFFF00",
+            "row": 8,
+            "col": 1
+        },
+        {
+            "name": "HDMI", 
+            "description": "High Definition Multimedia Interface",
+            "detailed_description": "",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" }
+            ],
+            "color": "white",
+            "background-color": "purple",
+            "row": 10,
+            "col": 1
+        },
+        {
+            "name": "DSI", 
+            "description": "Display Serial Interface",
+            "detailed_description": "Serial interface for controlling LCD displays (like the <a href='https://www.raspberrypi.com/documentation/accessories/display.html'>official Touch display</a>).",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" }
+            ],
+            "color": "black",
+            "background-color": "lightgreen",
+            "row": 11,
+            "col": 1
+        },
+        {
+            "name": "MIPI",
+            "description": "Dual-mode interface for either CSI or DSI",
+            "detailed_description": "This interface can either act as DSI (for displays) or CSI (for cameras).  This replaces the single-mode interfaces from the CM4.",
+            "controllers": [
+                { "name": "0" },
+                { "name": "1" }
+            ],
+            "color": "black",
+            "background-color": "#8EEE7F",
+            "row": 9,
+            "col": 1
+        },
+        {
+            "name": "Reserved", 
+            "description": "Pins reserved for future use",
+            "detailed_description": "",
+            "color": "black",
+            "background-color": "#4F6227",
+            "row": 11,
+            "col": 1
+        }
+    ],
+
+    "pin_rows": 50,
+    "pin_cols": 5,
+
+    "pins": [
+        {
+            "row": 49,
+            "col": 4,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "e"
+        },
+        {
+            "row": 49,
+            "col": 3,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "w"
+        },
+        {
+            "row": 48,
+            "col": 4,
+            "name": "Ethernet_Pair3_P",
+            "description": "Ethernet Pair 3 Positive (connect to transformer or MagJack)",
+            "class": "ethernet",
+            "dir": "e"
+        },
+        {
+            "row": 48,
+            "col": 3,
+            "name": "Ethernet_Pair1_P",
+            "description": "Ethernet Pair 1 Positive (connect to transformer or MagJack)",
+            "class": "ethernet",
+            "dir": "w"
+        },
+        {
+            "row": 47,
+            "col": 4,
+            "name": "Ethernet_Pair3_N",
+            "description": "Ethernet Pair 3 Negative (connect to transformer or MagJack)",
+            "class": "ethernet",
+            "dir": "e"
+        },
+        {
+            "row": 47,
+            "col": 3,
+            "name": "Ethernet_Pair1_N",
+            "description": "Ethernet Pair 1 Negative (connect to transformer or MagJack)",
+            "class": "ethernet",
+            "dir": "w"
+        },
+        {
+            "row": 46,
+            "col": 4,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "e"
+        },
+        {
+            "row": 46,
+            "col": 3,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "w"
+        },
+        {
+            "row": 45,
+            "col": 4,
+            "name": "Ethernet_Pair2_N",
+            "description": "Ethernet Pair 2 Negative (connect to transformer or MagJack)",
+            "class": "ethernet",
+            "dir": "e"
+        },
+        {
+            "row": 45,
+            "col": 3,
+            "name": "Ethernet_Pair0_N",
+            "description": "Ethernet Pair 0 Negative (connect to transformer or MagJack)",
+            "class": "ethernet",
+            "dir": "w"
+        },
+        {
+            "row": 44,
+            "col": 4,
+            "name": "Ethernet_Pair2_P",
+            "description": "Ethernet Pair 2 Positive (connect to transformer or MagJack)",
+            "class": "ethernet",
+            "dir": "e"
+        },
+        {
+            "row": 44,
+            "col": 3,
+            "name": "Ethernet_Pair0_P",
+            "description": "Ethernet Pair 0 Positive (connect to transformer or MagJack)",
+            "class": "ethernet",
+            "dir": "w"
+        },
+        {
+            "row": 43,
+            "col": 4,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "e"
+        },
+        {
+            "row": 43,
+            "col": 3,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "w"
+        },
+        {
+            "row": 42,
+            "col": 4,
+            "name": "Ethernet_nLED3",
+            "description": "Active-Low Ethernet Activity indicator (3.3V signal) Typically a Green LED is connected to this pin: IOL = 8mA @ VOL< 0.4V",
+            "class": "ethernet",
+            "dir": "e"
+        },
+        {
+            "row": 42,
+            "col": 3,
+            "name": "Fan_Tacho",
+            "description": "Fan Tacho Input pin internally pulled up with a 1.8K resistor to CM5_3.3V",
+            "class": "rpi",
+            "controller_id": "fan",
+            "dir": "w"
+        },
+        {
+            "row": 41,
+            "col": 4,
+            "name": "Ethernet_nLED2",
+            "description": "Active-low Ethernet speed indicator (CM5_3.3V signal): typically a yellow LED is connected to this pin. A low state indicates the 1Gbit or 100Mbit link: IOL = 8mA @ VOL < 0.4V",
+            "class": "ethernet",
+            "dir": "e"
+        },
+        {
+            "row": 41,
+            "col": 3,
+            "name": "Ethernet_SYNC_OUT",
+            "description": "IEEE1588 SYNC Output pin ( 1.8V signal : IOL = 8mA @ VOL< 0.4V )",
+            "class": "ethernet",
+            "dir": "w"
+        },
+        {
+            "row": 40,
+            "col": 4,
+            "name": "Fan_PWM",
+            "description": "Fan PWM Output, open-drain",
+            "class": "rpi",
+            "controller_id": "fan",
+            "dir": "e"
+        },
+        {
+            "row": 40,
+            "col": 3,
+            "name": "EEPROM_nWP",
+            "description": "Leaving floating NB internally pulled up to CM5_3.3V via 100K ( VIL <0.8V) but can be grounded to prevent writing to the on board EEPROM which stores the bootcode",
+            "class": "rpi",
+            "controller_id": "boot",
+            "dir": "w"
+        },
+        {
+            "row": 39,
+            "col": 4,
+            "name": "LED_nACT",
+            "description": "Active-Low Pi Activity LED. 20mA Max 5V tolerant ( VOL<0.4V). ( this is the signal that drives the Green LED on the Raspberry Pi 5 )",
+            "class": "rpi",
+            "controller_id": "leds",
+            "dir": "e"
+        },
+        {
+            "row": 39,
+            "col": 3,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "w"
+        },
+        {
+            "row": 38,
+            "col": 4,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "e"
+        },
+        {
+            "row": 38,
+            "col": 3,
+            "name": "GPIO26",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SDIO0_DAT[2]",
+                    "description": "SDIO0 Data 2",
+                    "class": "sdio",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[22]",
+                    "description": "DPI Data 22",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SDI[3]",
+                    "description": "I2S 0 Data In 3",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "AUDIO_IN_DAT0",
+                    "description": "PDM Audio In, Data 0",
+                    "class": "audio_in"
+                },
+                {
+                    "name": "I2S1_SDI[3]",
+                    "description": "I2S 1 Data In 3",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[26]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[26]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[26]",
+                    "description": "Programmable IO, pin 26",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI5_CSn[1]",
+                    "description": "SPI5 Chip Select 1",
+                    "class": "spi",
+                    "controller_id": "5"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 37,
+            "col": 4,
+            "name": "GPIO21",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI1_SCLK",
+                    "description": "SPI1 Clock",
+                    "class": "spi",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "DPI_D[17]",
+                    "description": "DPI Data 17",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SDO[0]",
+                    "description": "I2S 0 Data Out 0",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "GPCLK[1]",
+                    "description": "General Purpose Clock 1",
+                    "class": "gpclk",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "I2S1_SDO[0]",
+                    "description": "I2S 1 Data Out 0",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[21]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[21]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[21]",
+                    "description": "Programmable IO, pin 21",
+                    "class": "pio"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 37,
+            "col": 3,
+            "name": "GPIO19",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI1_SIO[1]",
+                    "description": "SPI1 (Single: MISO) (Dual: IO1)",
+                    "class": "spi",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "DPI_D[15]",
+                    "description": "DPI Data 15",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_WS",
+                    "description": "I2S 0 Word Select / LRCLK",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "PWM0[3]",
+                    "description": "PWM0 Channel 3",
+                    "class": "pwm"
+                },
+                {
+                    "name": "I2S1_WS",
+                    "description": "I2S 1 Word Select / LRCLK",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[19]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[19]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[19]",
+                    "description": "Programmable IO, pin 19",
+                    "class": "pio"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 36,
+            "col": 4,
+            "name": "GPIO20",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI1_SIO[0]",
+                    "description": "SPI1 (Single: MOSI) (Dual: IO0)",
+                    "class": "spi",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "DPI_D[16]",
+                    "description": "DPI Data 16",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SDI[0]",
+                    "description": "I2S 0 Data In 0",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "GPCLK[0]",
+                    "description": "General Purpose Clock 0",
+                    "class": "gpclk",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "I2S1_SDI[0]",
+                    "description": "I2S 1 Data In 0",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[20]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[20]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[20]",
+                    "description": "Programmable IO, pin 20",
+                    "class": "pio"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 36,
+            "col": 3,
+            "name": "GPIO13",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "PWM0[1]",
+                    "description": "PWM0 Channel 1",
+                    "class": "pwm"
+                },
+                {
+                    "name": "DPI_D[9]",
+                    "description": "DPI Data 9",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART4_RX",
+                    "description": "UART4 Receive",
+                    "class": "uart",
+                    "controller_id": "4"
+                },
+                {
+                    "name": "I2C2_SCL",
+                    "description": "I2C2 Clock",
+                    "class": "i2c",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "AUDIO_OUT_R",
+                    "description": "PCM Audio Output, Right Channel",
+                    "class": "audio_out"
+                },
+                {
+                    "name": "SYS_RIO[13]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[13]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[13]",
+                    "description": "Programmable IO, pin 13",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI5_SIO[1]",
+                    "description": "SPI5 (Single: MISO) (Dual: IO1)",
+                    "class": "spi",
+                    "controller_id": "5"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 35,
+            "col": 4,
+            "name": "GPIO16",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI1_CSn[2]",
+                    "description": "SPI1 Chip Select 2",
+                    "class": "spi",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "DPI_D[12]",
+                    "description": "DPI Data 12",
+                    "class": "dpi"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "UART0_CTS",
+                    "description": "UART0 Clear to Send",
+                    "class": "uart",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[16]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[16]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[16]",
+                    "description": "Programmable IO, pin 16",
+                    "class": "pio"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 35,
+            "col": 3,
+            "name": "GPIO6",
+            "description": "GPIO Typically a 3.3V signal but can be a 1.8V signal by connecting GPIO_Vref to 1.8V.  Internal pull-up",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "GPCLK[2]",
+                    "description": "General Purpose Clock 2",
+                    "class": "gpclk",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "DPI_D[2]",
+                    "description": "DPI Data 2",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART2_CTS",
+                    "description": "UART2 Clear to Send",
+                    "class": "uart",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "I2C3_SDA",
+                    "description": "I2C3 Data",
+                    "class": "i2c",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "UART0_DCD",
+                    "description": "UART0 Data Carrier Detect",
+                    "class": "uart",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[6]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[6]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[6]",
+                    "description": "Programmable IO, pin 6",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI3_SIO[0]",
+                    "description": "SPI3 (Single: MOSI) (Dual: IO0)",
+                    "class": "spi",
+                    "controller_id": "3"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 34,
+            "col": 4,
+            "name": "GPIO12",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "PWM0[0]",
+                    "description": "PWM0 Channel 0",
+                    "class": "pwm"
+                },
+                {
+                    "name": "DPI_D[8]",
+                    "description": "DPI Data 8",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART4_TX",
+                    "description": "UART4 Transmit",
+                    "class": "uart",
+                    "controller_id": "4"
+                },
+                {
+                    "name": "I2C2_SDA",
+                    "description": "I2C2 Data",
+                    "class": "i2c",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "AUDIO_OUT_L",
+                    "description": "PCM Audio Output, Left Channel",
+                    "class": "audio_out"
+                },
+                {
+                    "name": "SYS_RIO[12]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[12]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[12]",
+                    "description": "Programmable IO, pin 12",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI5_CSn[0]",
+                    "description": "SPI5 Chip Select 0",
+                    "class": "spi",
+                    "controller_id": "5"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 34,
+            "col": 3,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "w"
+        },
+        {
+            "row": 33,
+            "col": 4,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "e"
+        },
+        {
+            "row": 33,
+            "col": 3,
+            "name": "GPIO5",
+            "description": "GPIO Typically a 3.3V signal but can be a 1.8V signal by connecting GPIO_Vref to 1.8V.  Internal pull-up",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "GPCLK[1]",
+                    "description": "General Purpose Clock 1",
+                    "class": "gpclk",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "DPI_D[1]",
+                    "description": "DPI Data 1",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART2_RX",
+                    "description": "UART2 Receive",
+                    "class": "uart",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "I2C2_SCL",
+                    "description": "I2C2 Clock",
+                    "class": "i2c",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "UART0_DTR",
+                    "description": "UART0 Data Terminal Ready",
+                    "class": "uart",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[5]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[5]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[5]",
+                    "description": "Programmable IO, pin 5",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI3_SIO[1]",
+                    "description": "SPI3 (Single: MISO) (Dual: IO1)",
+                    "class": "spi",
+                    "controller_id": "3"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 32,
+            "col": 4,
+            "name": "ID_SC",
+            "description": "(BCM2712 GPIO 1) GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V\nThis I2C bus is normally used for identifying HATs and controlling CSI0 and DSI0 devices. If the firmware isn't using the I2C bus e.g. MIPI1 isn't being used then these pins may be used as GPIO 0 and GPIO 1 if required.\nIf these pins are used as GPIO pins, then to prevent the firmware from checking to see if there is a HAT EEPROM available, add force_eeprom_read=0 and disable_poe_fan=1 to the config.txt file",
+            "class": "rpi",
+            "functions": [
+                {
+                    "name": "GPIO1",
+                    "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+                    "class": "gpio"
+                },
+                {
+                    "name": "SPI0_SIO[2]",
+                    "description": "SPI0 (Single, Dual: Unused) (Quad: IO2)",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_DE",
+                    "description": "DPI Data Enable",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART1_RX",
+                    "description": "UART1 Receive",
+                    "class": "uart",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "I2C0_SCL",
+                    "description": "I2C0 Clock",
+                    "class": "i2c",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "SYS_RIO[1]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[1]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[1]",
+                    "description": "Programmable IO, pin 1",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI2_SIO[1]",
+                    "description": "SPI2 (Single: MISO) (Dual: IO1)",
+                    "class": "spi",
+                    "controller_id": "2"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 32,
+            "col": 3,
+            "name": "ID_SD",
+            "description": "(BCM2712 GPIO 0) GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V\nThis I2C bus is normally used for identifying HATs and controlling CSI0 and DSI0 devices. If the firmware isn't using the I2C bus e.g. MIPI1 isn't being used then these pins may be used as GPIO 0 and GPIO 1 if required.\nIf these pins are used as GPIO pins, then to prevent the firmware from checking to see if there is a HAT EEPROM available, add force_eeprom_read=0 and disable_poe_fan=1 to the config.txt file",
+            "class": "rpi",
+            "functions": [
+                {
+                    "name": "GPIO0",
+                    "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+                    "class": "gpio"
+                },
+                {
+                    "name": "SPI0_SIO[3]",
+                    "description": "SPI0 (Single, Dual: Unused) (Quad: IO3)",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_PCLK",
+                    "description": "DPI Pixel Clock",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART1_TX",
+                    "description": "UART1 Transmit",
+                    "class": "uart",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "I2C0_SDA",
+                    "description": "I2C0 Data",
+                    "class": "i2c",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "SYS_RIO[0]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[0]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[0]",
+                    "description": "Programmable IO, pin 0",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI2_CSn[0]",
+                    "description": "SPI2 Chip Select 0",
+                    "class": "spi",
+                    "controller_id": "2"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 31,
+            "col": 4,
+            "name": "GPIO7",
+            "description": "GPIO Typically a 3.3V signal but can be a 1.8V signal by connecting GPIO_Vref to 1.8V.  Internal pull-up",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI0_CSn[1]",
+                    "description": "SPI0 Chip Select 1",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[3]",
+                    "description": "DPI Data 3",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART2_RTS",
+                    "description": "UART2 Request to Send",
+                    "class": "uart",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "I2C3_SCL",
+                    "description": "I2C3 Clock",
+                    "class": "i2c",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "UART0_DSR",
+                    "description": "UART0 Data Set Ready",
+                    "class": "uart",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[7]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[7]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[7]",
+                    "description": "Programmable IO, pin 7",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI3_SCLK",
+                    "description": "SPI3 Clock",
+                    "class": "spi",
+                    "controller_id": "3"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 31,
+            "col": 3,
+            "name": "GPIO11",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI0_SCLK",
+                    "description": "SPI0 Clock",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[7]",
+                    "description": "DPI Data 7",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART3_RTS",
+                    "description": "UART3 Request to Send",
+                    "class": "uart",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "I2C1_SCL",
+                    "description": "I2C1 Clock",
+                    "class": "i2c",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "SYS_RIO[11]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[11]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[11]",
+                    "description": "Programmable IO, pin 11",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI4_SCLK",
+                    "description": "SPI4 Clock",
+                    "class": "spi",
+                    "controller_id": "4"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 30,
+            "col": 4,
+            "name": "GPIO8",
+            "description": "GPIO Typically a 3.3V signal but can be a 1.8V signal by connecting GPIO_Vref to 1.8V.  Internal pull-up",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI0_CSn[0]",
+                    "description": "SPI0 Chip Select 0",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[4]",
+                    "description": "DPI Data 4",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART3_TX",
+                    "description": "UART3 Transmit",
+                    "class": "uart",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "I2C0_SDA",
+                    "description": "I2C0 Data",
+                    "class": "i2c",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "SYS_RIO[8]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[8]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[8]",
+                    "description": "Programmable IO, pin 8",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI4_CSn[0]",
+                    "description": "SPI4 Chip Select 0",
+                    "class": "spi",
+                    "controller_id": "4"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 30,
+            "col": 3,
+            "name": "GPIO9",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI0_SIO[1]",
+                    "description": "SPI0 (Single: MISO) (Dual, Quad: IO1)",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[5]",
+                    "description": "DPI Data 5",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART3_RX",
+                    "description": "UART3 Receive",
+                    "class": "uart",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "I2C0_SCL",
+                    "description": "I2C0 Clock",
+                    "class": "i2c",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "SYS_RIO[9]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[9]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[9]",
+                    "description": "Programmable IO, pin 9",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI4_MISO",
+                    "description": "SPI4 (Single: MISO)",
+                    "class": "spi",
+                    "controller_id": "4"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 29,
+            "col": 4,
+            "name": "GPIO25",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SDIO0_DAT[1]",
+                    "description": "SDIO0 Data 1",
+                    "class": "sdio",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[21]",
+                    "description": "DPI Data 21",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SDO[2]",
+                    "description": "I2S 0 Data Out 2",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "AUDIO_IN_CLK",
+                    "description": "PDM Audio In, Clock",
+                    "class": "audio_in"
+                },
+                {
+                    "name": "I2S1_SDO[2]",
+                    "description": "I2S 1 Data Out 2",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[25]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[25]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[25]",
+                    "description": "Programmable IO, pin 25",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI1_CSn[3]",
+                    "description": "SPI3 Chip Select 1",
+                    "class": "spi",
+                    "controller_id": "3"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 29,
+            "col": 3,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "w"
+        },
+        {
+            "row": 28,
+            "col": 4,
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "dir": "e"
+        },
+        {
+            "row": 28,
+            "col": 3,
+            "name": "GPIO10",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI0_SIO[0]",
+                    "description": "SPI0 (Single: MOSI) (Dual, Quad: IO0)",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[6]",
+                    "description": "DPI Data 6",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART3_CTS",
+                    "description": "UART3 Clear to Send",
+                    "class": "uart",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "I2C1_SDA",
+                    "description": "I2C1 Data",
+                    "class": "i2c",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "SYS_RIO[10]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[10]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[10]",
+                    "description": "Programmable IO, pin 10",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI4_MOSI",
+                    "description": "SPI4 (Single: MOSI)",
+                    "class": "spi",
+                    "controller_id": "4"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 27,
+            "col": 4,
+            "name": "GPIO24",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SDIO0_DAT[0]",
+                    "description": "SDIO0 Data 0",
+                    "class": "sdio",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[20]",
+                    "description": "DPI Data 20",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SDI[2]",
+                    "description": "I2S 0 Data In 2",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "I2S1_SDI[2]",
+                    "description": "I2S 1 Data In 2",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[24]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[24]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[24]",
+                    "description": "Programmable IO, pin 24",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI2_CSn[3]",
+                    "description": "SPI2 Chip Select 1",
+                    "class": "spi",
+                    "controller_id": "2"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 27,
+            "col": 3,
+            "name": "GPIO22",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SDIO0_CLK",
+                    "description": "SDIO0 Clock",
+                    "class": "sdio",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[18]",
+                    "description": "DPI Data 18",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SDI[1]",
+                    "description": "I2S 0 Data In 1",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "I2C3_SDA",
+                    "description": "I2C3 Data",
+                    "class": "i2c",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "I2S1_SDI[1]",
+                    "description": "I2S 1 Data In 1",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[22]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[22]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[22]",
+                    "description": "Programmable IO, pin 22",
+                    "class": "pio"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 26,
+            "col": 4,
+            "name": "GPIO23",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SDIO0_CMD",
+                    "description": "SDIO0 Command",
+                    "class": "sdio",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[19]",
+                    "description": "DPI Data 19",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SDO[1]",
+                    "description": "I2S 0 Data Out 1",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "I2C3_SCL",
+                    "description": "I2C3 Clock",
+                    "class": "i2c",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "I2S1_SDO[1]",
+                    "description": "I2S 1 Data Out 1",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[23]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[23]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[23]",
+                    "description": "Programmable IO, pin 23",
+                    "class": "pio"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 26,
+            "col": 3,
+            "name": "GPIO27",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SDIO0_DAT[3]",
+                    "description": "SDIO0 Data 3",
+                    "class": "sdio",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[23]",
+                    "description": "DPI Data 23",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SDO[3]",
+                    "description": "I2S 0 Data Out 3",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "AUDIO_IN_DAT1",
+                    "description": "PDM Audio In, Data 1",
+                    "class": "audio_in"
+                },
+                {
+                    "name": "`I2S1_SDO`[3]",
+                    "description": "I2S 1 Data Out 3",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[27]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[27]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[27]",
+                    "description": "Programmable IO, pin 27",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI1_CSn[1]",
+                    "description": "SPI1 Chip Select 1",
+                    "class": "spi",
+                    "controller_id": "1"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "row": 25,
+            "col": 4,
+            "name": "GPIO18",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI1_CSn[0]",
+                    "description": "SPI1 Chip Select 0",
+                    "class": "spi",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "DPI_D[14]",
+                    "description": "DPI Data 14",
+                    "class": "dpi"
+                },
+                {
+                    "name": "I2S0_SCLK",
+                    "description": "I2S 0 System Clock",
+                    "class": "i2s",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "PWM0[2]",
+                    "description": "PWM0 Channel 2",
+                    "class": "pwm"
+                },
+                {
+                    "name": "I2S1_SCLK",
+                    "description": "I2S 1 System Clock",
+                    "class": "i2s",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "SYS_RIO[18]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[18]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[18]",
+                    "description": "Programmable IO, pin 18",
+                    "class": "pio"
+                },
+                {
+                    "name": "GPCLK[1]",
+                    "description": "General Purpose Clock 1",
+                    "class": "gpclk",
+                    "controller_id": "1"
+                }
+            ],
+            "dir": "e"
+        },
+        {
+            "row": 25,
+            "col": 3,
+            "name": "GPIO17",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI1_CSn[1]",
+                    "description": "SPI1 Chip Select 1",
+                    "class": "spi",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "DPI_D[13]",
+                    "description": "DPI Data 13",
+                    "class": "dpi"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                },
+                {
+                    "name": "UART0_RTS",
+                    "description": "UART0 Request to Send",
+                    "class": "uart",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[17]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[17]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[17]",
+                    "description": "Programmable IO, pin 17",
+                    "class": "pio"
+                },
+                {
+                    "name": "Reserved",
+                    "description": "Reserved",
+                    "class": "reserved"
+                }
+            ],
+            "dir": "w"
+        },
+        {
+            "name": "GPIO15",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "PWM0[3]",
+                    "description": "PWM0 Channel 3",
+                    "class": "pwm"
+                },
+                {
+                    "name": "DPI_D[11]",
+                    "description": "DPI Data 11",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART4_RTS",
+                    "description": "UART4 Request to Send",
+                    "class": "uart",
+                    "controller_id": "4"
+                },
+                {
+                    "name": "I2C3_SCL",
+                    "description": "I2C3 Clock",
+                    "class": "i2c",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "UART0_RX",
+                    "description": "UART0 Receive",
+                    "class": "uart",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[15]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[15]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[15]",
+                    "description": "Programmable IO, pin 15",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI5_SCLK",
+                    "description": "SPI5 Clock",
+                    "class": "spi",
+                    "controller_id": "5"
+                }
+            ],
+            "col": 4,
+            "row": 24,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 3,
+            "row": 24,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 4,
+            "row": 23,
+            "dir": "e"
+        },
+        {
+            "name": "GPIO4",
+            "description": "GPIO Typically a 3.3V signal but can be a 1.8V signal by connecting GPIO_Vref to 1.8V.  Internal pull-up",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "GPCLK[0]",
+                    "description": "General Purpose Clock 0",
+                    "class": "gpclk",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_D[0]",
+                    "description": "DPI Data 0",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART2_TX",
+                    "description": "UART2 Transmit",
+                    "class": "uart",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "I2C2_SDA",
+                    "description": "I2C2 Data",
+                    "class": "i2c",
+                    "controller_id": "2"
+                },
+                {
+                    "name": "UART0_RI",
+                    "description": "UART0 Ring Indicator",
+                    "class": "uart",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[4]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[4]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[4]",
+                    "description": "Programmable IO, pin 4",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI3_CSn[0]",
+                    "description": "SPI3 Chip Select 0",
+                    "class": "spi",
+                    "controller_id": "3"
+                }
+            ],
+            "col": 3,
+            "row": 23,
+            "dir": "w"
+        },
+        {
+            "name": "GPIO14",
+            "description": "GPIO: typically a 3.3V signal, but can be a 1.8V signal by connecting GPIO_VREF to CM5_1.8V",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "PWM0[2]",
+                    "description": "PWM0 Channel 2",
+                    "class": "pwm"
+                },
+                {
+                    "name": "DPI_D[10]",
+                    "description": "DPI Data 10",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART4_CTS",
+                    "description": "UART4 Clear to Send",
+                    "class": "uart",
+                    "controller_id": "4"
+                },
+                {
+                    "name": "I2C3_SDA",
+                    "description": "I2C3 Data",
+                    "class": "i2c",
+                    "controller_id": "3"
+                },
+                {
+                    "name": "UART0_TX",
+                    "description": "UART0 Transmit",
+                    "class": "uart",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[14]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[14]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[14]",
+                    "description": "Programmable IO, pin 14",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI5_SIO[0]",
+                    "description": "SPI5 (Single: MOSI) (Dual: IO0)",
+                    "class": "spi",
+                    "controller_id": "5"
+                }
+            ],
+            "col": 4,
+            "row": 22,
+            "dir": "e"
+        },
+        {
+            "name": "GPIO3",
+            "description": "GPIO Typically a 3.3V signal but can be a 1.8V signal by connecting GPIO_Vref to 1.8V.  Internal pull-up",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI0_CSn[2]",
+                    "description": "SPI0 Chip Select 2",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_HSYNC",
+                    "description": "DPI Horizontal Synchronisation",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART1_RTS",
+                    "description": "UART1 Request to Send",
+                    "class": "uart",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "I2C1_SCL",
+                    "description": "I2C1 Clock",
+                    "class": "i2c",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "UART0_IR_TX",
+                    "description": "UART0 IrDA Transmit",
+                    "class": "uart",
+                    "other_classes": ["irda"],
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[3]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[3]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[3]",
+                    "description": "Programmable IO, pin 3",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI2_SCLK",
+                    "description": "SPI2 Clock",
+                    "class": "spi",
+                    "controller_id": "2"
+                }
+            ],
+            "col": 3,
+            "row": 22,
+            "dir": "w"
+        },
+        {
+            "name": "SD_CLK",
+            "description": "SD card Clock signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 4,
+            "row": 21,
+            "dir": "e"
+        },
+        {
+            "name": "GPIO2",
+            "description": "GPIO Typically a 3.3V signal but can be a 1.8V signal by connecting GPIO_Vref to 1.8V.  Internal pull-up",
+            "class": "gpio",
+            "functions": [
+                {
+                    "name": "SPI0_CSn[3]",
+                    "description": "SPI0 Chip Select 3",
+                    "class": "spi",
+                    "controller_id": "0"
+                },
+                {
+                    "name": "DPI_VSYNC",
+                    "description": "DPI Vertical Synchronisation",
+                    "class": "dpi"
+                },
+                {
+                    "name": "UART1_CTS",
+                    "description": "UART1 Clear to Send",
+                    "class": "uart",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "I2C1_SDA",
+                    "description": "I2C1 Data",
+                    "class": "i2c",
+                    "controller_id": "1"
+                },
+                {
+                    "name": "UART0_IR_RX",
+                    "description": "UART0 IrDA Receive",
+                    "class": "uart",
+                    "other_classes": ["irda"],
+                    "controller_id": "0"
+                },
+                {
+                    "name": "SYS_RIO[2]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PROC_RIO[2]",
+                    "description": "It's a mystery...",
+                    "class": "rio"
+                },
+                {
+                    "name": "PIO[2]",
+                    "description": "Programmable IO, pin 2",
+                    "class": "pio"
+                },
+                {
+                    "name": "SPI2_SIO[0]",
+                    "description": "SPI2 (Single: MOSI) (Dual: IO0)",
+                    "class": "spi",
+                    "controller_id": "2"
+                }
+            ],
+            "col": 3,
+            "row": 21,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 4,
+            "row": 20,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 3,
+            "row": 20,
+            "dir": "w"
+        },
+        {
+            "name": "SD_DAT3",
+            "description": "SD card / eMMC Data3 signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 4,
+            "row": 19,
+            "dir": "e"
+        },
+        {
+            "name": "SD_CMD",
+            "description": "SD card / eMMC Command signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 3,
+            "row": 19,
+            "dir": "w"
+        },
+        {
+            "name": "SD_DAT0",
+            "description": "SD card / eMMC Data0 signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 4,
+            "row": 18,
+            "dir": "e"
+        },
+        {
+            "name": "SD_DAT5",
+            "description": "SD card / eMMC Data5 signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 3,
+            "row": 18,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 4,
+            "row": 17,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 3,
+            "row": 17,
+            "dir": "w"
+        },
+        {
+            "name": "SD_DAT1",
+            "description": "SD card / eMMC Data1 signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 4,
+            "row": 16,
+            "dir": "e"
+        },
+        {
+            "name": "SD_DAT4",
+            "description": "SD card / eMMC Data4 signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 3,
+            "row": 16,
+            "dir": "w"
+        },
+        {
+            "name": "SD_DAT2",
+            "description": "SD card / eMMC Data2 signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 4,
+            "row": 15,
+            "dir": "e"
+        },
+        {
+            "name": "SD_DAT7",
+            "description": "SD card / eMMC Data7 signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 3,
+            "row": 15,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 4,
+            "row": 14,
+            "dir": "e"
+        },
+        {
+            "name": "SD_DAT6",
+            "description": "SD card / eMMC Data6 signal (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 3,
+            "row": 14,
+            "dir": "w"
+        },
+        {
+            "name": "SD_VDD_Override",
+            "description": "Connect to CM5_3.3V to force SD card/eMMC interface to 1.8V signalling instead of 3.3V, otherwise leave unconnected. Typically only used if external eMMC is connected.",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 4,
+            "row": 13,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 3,
+            "row": 13,
+            "dir": "w"
+        },
+        {
+            "name": "SD_PWR_ON",
+            "description": "Output to power switch for the SD card. The CM5 sets this pin high (3.3V) to signal that power to the SD card should be turned on. Internally Pulled up to CM5_3.3v with a 4.53K (only available on CM5Lite)",
+            "class": "sdio",
+            "controller_id": "sd",
+            "col": 4,
+            "row": 12,
+            "dir": "e"
+        },
+        {
+            "name": "VBAT",
+            "description": "RTC Battery input, 2.5V to 3.5V, typically 3V",
+            "class": "rpi",
+            "controller_id": "power",
+            "col": 3,
+            "row": 12,
+            "dir": "w"
+        },
+        {
+            "name": "+5V (Input)",
+            "description": "4.75V - 5.25V Main power input",
+            "class": "power",
+            "controller_id": "5v",
+            "col": 4,
+            "row": 11,
+            "dir": "e"
+        },
+        {
+            "name": "GPIO_VREF",
+            "description": "Must be connected to CM5_3.3V (pins 84 and 86) for 3.3V GPIO0-27 or CM5_1.8V (pins 88 and 90) for 1.8V GPIO0-27. This pin cannot be floating or connected to ground.",
+            "class": "power",
+            "controller_id": "gpio",
+            "col": 3,
+            "row": 11,
+            "dir": "w"
+        },
+        {
+            "name": "+5V (Input)",
+            "description": "4.75V - 5.25V Main power input",
+            "class": "power",
+            "controller_id": "5v",
+            "col": 4,
+            "row": 10,
+            "dir": "e"
+        },
+        {
+            "name": "SCL0",
+            "description": "I2C clock pin (GPIO39): typically used for Camera and Display. Internal 1.8kΩ pull-up to CM5_3.3V",
+            "class": "i2c",
+            "controller_id": "mipi",
+            "other_classes": ["mipi-i2c"],
+            "col": 3,
+            "row": 10,
+            "dir": "w"
+        },
+        {
+            "name": "+5V (Input)",
+            "description": "4.75V - 5.25V Main power input",
+            "class": "power",
+            "controller_id": "5v",
+            "col": 4,
+            "row": 9,
+            "dir": "e"
+        },
+        {
+            "name": "SDA0",
+            "description": "I2C Data pin (GPIO38): typically used for Camera and Display. Internal 1.8kΩ pull-up to CM5_3.3V",
+            "class": "i2c",
+            "controller_id": "mipi",
+            "other_classes": ["mipi-i2c"],
+            "col": 3,
+            "row": 9,
+            "dir": "w"
+        },
+        {
+            "name": "+5V (Input)",
+            "description": "4.75V - 5.25V Main power input",
+            "class": "power",
+            "controller_id": "5v",
+            "col": 4,
+            "row": 8,
+            "dir": "e"
+        },
+        {
+            "name": "CM5_3.3V (Output)",
+            "description": "3.3V ± 5%. Power Output max 300mA per pin for a total of 600mA. This will be powered down during power-off or GLOBAL_EN being set low",
+            "class": "power",
+            "controller_id": "3v3",
+            "col": 3,
+            "row": 8,
+            "dir": "w"
+        },
+        {
+            "name": "+5V (Input)",
+            "description": "4.75V - 5.25V Main power input",
+            "class": "power",
+            "controller_id": "5v",
+            "col": 4,
+            "row": 7,
+            "dir": "e"
+        },
+        {
+            "name": "CM5_3.3V (Output)",
+            "description": "3.3V ± 5%. Power Output max 300mA per pin for a total of 600mA. This will be powered down during power-off or GLOBAL_EN being set low",
+            "class": "power",
+            "controller_id": "3v3",
+            "col": 3,
+            "row": 7,
+            "dir": "w"
+        },
+        {
+            "name": "+5V (Input)",
+            "description": "4.75V - 5.25V Main power input",
+            "class": "power",
+            "controller_id": "5v",
+            "col": 4,
+            "row": 6,
+            "dir": "e"
+        },
+        {
+            "name": "CM5_1.8V (Output)",
+            "description": "1.8V ± 5%. Power Output max 300mA per pin for a total of 600mA. This will be powered down during power-off or GLOBAL_EN being set low",
+            "class": "power",
+            "controller_id": "1v8",
+            "col": 3,
+            "row": 6,
+            "dir": "w"
+        },
+        {
+            "name": "WL_nDisable",
+            "description": "Can be left floating.  If driven low the wireless interface will be disabled. Internal pulled up via 1.8K to CM5_3.3V",
+            "class": "rpi",
+            "controller_id": "wireless",
+            "col": 4,
+            "row": 5,
+            "dir": "e"
+        },
+        {
+            "name": "CM5_1.8V (Output)",
+            "description": "1.8V ± 5%. Power Output max 300mA per pin for a total of 600mA. This will be powered down during power-off or GLOBAL_EN being set low",
+            "class": "power",
+            "controller_id": "1v8",
+            "col": 3,
+            "row": 5,
+            "dir": "w"
+        },
+        {
+            "name": "BT_nDisable",
+            "description": "Can be left floating.  If driven low the Bluetooth interface will be disabled. Internal pulled up via 1.8K to CM5_3.3V",
+            "class": "rpi",
+            "controller_id": "wireless",
+            "col": 4,
+            "row": 4,
+            "dir": "e"
+        },
+        {
+            "name": "PWR_Button",
+            "description": "Pull low to force power off or power on from previous software powered off state. Internally pulled up to +5V via 10kΩ",
+            "class": "rpi",
+            "controller_id": "boot",
+            "col": 3,
+            "row": 4,
+            "dir": "w"
+        },
+        {
+            "name": "nRPIBOOT",
+            "description": "A low on this pin forces booting from an RPI server (e.g. PC or a Raspberry Pi)  if not used leave floating. Internally pulled up via 10K to CM5_3.3V",
+            "class": "rpi",
+            "controller_id": "boot",
+            "col": 4,
+            "row": 3,
+            "dir": "e"
+        },
+        {
+            "name": "CC1",
+            "description": "USB PSU PD signal , wire to a USB-C connector to enable 5A @ 5V negotiation.",
+            "class": "rpi",
+            "controller_id": "usb_c_cc",
+            "col": 3,
+            "row": 3,
+            "dir": "w"
+        },
+        {
+            "name": "LED_nPWR",
+            "description": "(3.3V signal) Active-low output to drive Power On LED. This signal needs to be buffered.",
+            "class": "rpi",
+            "controller_id": "leds",
+            "col": 4,
+            "row": 2,
+            "dir": "e"
+        },
+        {
+            "name": "CC2",
+            "description": "USB PSU PD signal , wire to a USB-C connector to enable 5A @ 5V negotiation.",
+            "class": "rpi",
+            "controller_id": "usb_c_cc",
+            "col": 3,
+            "row": 2,
+            "dir": "w"
+        },
+        {
+            "name": "CAM_GPIO0",
+            "description": "(3.3V signal) Can be a GPIO (GPIO34) or part of the bus with pin 100",
+            "class": "rpi",
+            "controller_id": "cam_gpio",
+            "col": 4,
+            "row": 1,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 3,
+            "row": 1,
+            "dir": "w"
+        },
+        {
+            "name": "PMIC_Enable",
+            "description": "Input. Drive low to power off CM5. Internally pulled up with a 100kΩ to +5V",
+            "class": "rpi",
+            "controller_id": "power",
+            "col": 4,
+            "row": 0,
+            "dir": "e"
+        },
+        {
+            "name": "CAM_GPIO1",
+            "description": "(3.3V signal) (GPIO35) Internally pulled up with 15K to CM5_3.3V",
+            "class": "rpi",
+            "controller_id": "cam_gpio",
+            "col": 3,
+            "row": 0,
+            "dir": "w"
+        },
+        {
+            "name": "USB_OTG_ID",
+            "description": "Input (3.3V signal) USB OTG Pin. Internally pulled up. When grounded the CM5 becomes a USB host but the correct OS driver also needs to be used",
+            "class": "usb2",
+            "col": 1,
+            "row": 49,
+            "dir": "e"
+        },
+        {
+            "name": "PCIe_CLK_nREQ",
+            "description": "Input (3.3V signal) PCIe Clock request pin (low to request PCI clock).  Internal pulled up",
+            "class": "pcie",
+            "col": 0,
+            "row": 49,
+            "dir": "w"
+        },
+        {
+            "name": "USB_N",
+            "description": "USB 2.0 D-",
+            "class": "usb2",
+            "col": 1,
+            "row": 48,
+            "dir": "e"
+        },
+        {
+            "name": "PCIE_nWAKE",
+            "description": "(3.3V signal) PCIe WAKE# signal can be left unconnected if wake up isn’t required, internally pulled up.",
+            "class": "pcie",
+            "other_classes": ["cm4-change"],
+            "col": 0,
+            "row": 48,
+            "dir": "w"
+        },
+        {
+            "name": "USB_P",
+            "description": "USB 2.0 D+",
+            "class": "usb2",
+            "col": 1,
+            "row": 47,
+            "dir": "e"
+        },
+        {
+            "name": "PCIE_PWR_EN",
+            "description": "(3.3V signal) Active high, used to signal that a PCIe device can be powered down when low.",
+            "class": "pcie",
+            "other_classes": ["cm4-change"],
+            "col": 0,
+            "row": 47,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 46,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 46,
+            "dir": "w"
+        },
+        {
+            "name": "PCIe_nRST",
+            "description": "Output (+3.3V signal) PCIe Reset active-low",
+            "class": "pcie",
+            "col": 1,
+            "row": 45,
+            "dir": "e"
+        },
+        {
+            "name": "PCIe_CLK_P",
+            "description": "PCIe Clock Out Positive (100MHz)",
+            "class": "pcie",
+            "col": 0,
+            "row": 45,
+            "dir": "w"
+        },
+        {
+            "name": "VBUS_EN",
+            "description": "(3.3V signal) Active-high output to signal USB3 ports should be powered",
+            "class": "usb3",
+            "other_classes": ["cm4-change"],
+            "col": 1,
+            "row": 44,
+            "dir": "e"
+        },
+        {
+            "name": "PCIe_CLK_N",
+            "description": "PCIe Clock Out Negative (100MHz)",
+            "class": "pcie",
+            "col": 0,
+            "row": 44,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 43,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 43,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_D0_N",
+            "description": "MIPI0 D0 Negative",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 42,
+            "dir": "e"
+        },
+        {
+            "name": "PCIe_RX_P",
+            "description": "Input PCIe GEN 2 RX Positive NB External AC coupling Capacitor required",
+            "class": "pcie",
+            "col": 0,
+            "row": 42,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_D0_P",
+            "description": "MIPI0 D0 Positive",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 41,
+            "dir": "e"
+        },
+        {
+            "name": "PCIe_RX_N",
+            "description": "Input PCIe GEN 2 RX Negative NB External AC coupling Capacitor required",
+            "class": "pcie",
+            "col": 0,
+            "row": 41,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 40,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 40,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_D1_N",
+            "description": "MIPI0 D1 Negative",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 39,
+            "dir": "e"
+        },
+        {
+            "name": "PCIe_TX_P",
+            "description": "Output PCIe GEN 2 TX Positive NB AC coupling Capacitor Included on CM5",
+            "class": "pcie",
+            "col": 0,
+            "row": 39,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_D1_P",
+            "description": "MIPI0 D1 Positive",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 38,
+            "dir": "e"
+        },
+        {
+            "name": "PCIe_TX_N",
+            "description": "Output PCIe GEN 2 TX Negative NB AC coupling Capacitor Included on CM5",
+            "class": "pcie",
+            "col": 0,
+            "row": 38,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 37,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 37,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_C_N",
+            "description": "MIPI0 clock negative",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 36,
+            "dir": "e"
+        },
+        {
+            "name": "USB3-0-RX_N",
+            "description": "USB3 Port 0 RX Input negative",
+            "class": "usb3",
+            "controller_id": "0",
+            "col": 0,
+            "row": 36,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_C_P",
+            "description": "MIPI0 clock positive",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 35,
+            "dir": "e"
+        },
+        {
+            "name": "USB3-0-RX_P",
+            "description": "USB3 Port 0 RX Input positive",
+            "class": "usb3",
+            "controller_id": "0",
+            "col": 0,
+            "row": 35,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 34,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 34,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_D2_N",
+            "description": "MIPI0 D2 negative",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 33,
+            "dir": "e"
+        },
+        {
+            "name": "USB3-0-DP",
+            "description": "USB3 Port 0, USB2.0 Data +",
+            "class": "usb3",
+            "controller_id": "0",
+            "col": 0,
+            "row": 33,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_D2_P",
+            "description": "MIPI0 D2 positive",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 32,
+            "dir": "e"
+        },
+        {
+            "name": "USB3-0-DM",
+            "description": "USB3 Port 0, USB2.0 Data -",
+            "class": "usb3",
+            "controller_id": "0",
+            "col": 0,
+            "row": 32,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 31,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 31,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_D3_N",
+            "description": "MIPI0 D3 negative",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 30,
+            "dir": "e"
+        },
+        {
+            "name": "USB3-0-TX_N",
+            "description": "USB3 Port 0 TX output negative NB AC coupling capacitor included on CM5c",
+            "class": "usb3",
+            "controller_id": "0",
+            "col": 0,
+            "row": 30,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI0_D3_P",
+            "description": "MIPI0 D3 positive",
+            "class": "mipi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 29,
+            "dir": "e"
+        },
+        {
+            "name": "USB3-0-TX_P",
+            "description": "USB3 Port 0 TX output positive NB AC coupling capacitor included on CM5",
+            "class": "usb3",
+            "controller_id": "0",
+            "col": 0,
+            "row": 29,
+            "dir": "w"
+        },
+        {
+            "name": "HDMI1_HOTPLUG",
+            "description": "Input HDMI1 Hotplug Internally pulled down with a 100K. 5V tolerant. (It can be connected directly to a HDMI connector)",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 28,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 28,
+            "dir": "w"
+        },
+        {
+            "name": "HDMI1_SDA",
+            "description": "Bidirectional HDMI1 SDA Internally pulled up with a 1.8K. 5V tolerant. (It can be connected directly to a HDMI connector)",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 27,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI1_TX2_P",
+            "description": "Output HDMI1 TX2 Positive",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 27,
+            "dir": "w"
+        },
+        {
+            "name": "HDMI1_SCL",
+            "description": "Bidirectional HDMI1 SCL Internally pulled up with a 1.8K. 5V tolerant. (It can be connected directly to a HDMI connector)",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 26,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI1_TX2_N",
+            "description": "Output HDMI1 TX2 Negative",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 26,
+            "dir": "w"
+        },
+        {
+            "name": "HDMI1_CEC",
+            "description": "Input HDMI1 CEC Internally pulled up with a 27K. 5V tolerant. (It can be connected directly to a HDMI connector)",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 25,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 25,
+            "dir": "w"
+        },
+        {
+            "name": "HDMI0_CEC",
+            "description": "Input HDMI0 CEC Internally pulled up with a 27K. 5V tolerant. (It can be connected directly to a HDMI connector)",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 24,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI1_TX1_P",
+            "description": "Output HDMI1 TX1 Positive",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 24,
+            "dir": "w"
+        },
+        {
+            "name": "HDMI0_HOTPLUG",
+            "description": "Input HDMI0 Hotplug Internally pulled down with a 100K. 5V tolerant. (It can be connected directly to a HDMI connector)",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 23,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI1_TX1_N",
+            "description": "Output HDMI1 TX1 Negative",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 23,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 22,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 22,
+            "dir": "w"
+        },
+        {
+            "name": "USB3-1-RX_N",
+            "description": "USB3 Port 1 RX Input negative",
+            "class": "usb3",
+            "controller_id": "1",
+            "col": 1,
+            "row": 21,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI1_TX0_P",
+            "description": "Output HDMI1 TX0 Positive",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 21,
+            "dir": "w"
+        },
+        {
+            "name": "USB3-1-RX_P",
+            "description": "USB3 Port 1 RX Input positive",
+            "class": "usb3",
+            "controller_id": "1",
+            "col": 1,
+            "row": 20,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI1_TX0_N",
+            "description": "Output HDMI1 TX0 Negative",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 20,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 19,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 19,
+            "dir": "w"
+        },
+        {
+            "name": "USB3-1-DP",
+            "description": "USB3 Port 1, USB2.0 Data +",
+            "class": "usb3",
+            "controller_id": "1",
+            "col": 1,
+            "row": 18,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI1_CLK_P",
+            "description": "Output HDMI1 Clock Positive",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 18,
+            "dir": "w"
+        },
+        {
+            "name": "USB3-1-DM",
+            "description": "USB3 Port 1, USB2.0 Data -",
+            "class": "usb3",
+            "controller_id": "1",
+            "col": 1,
+            "row": 17,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI1_CLK_N",
+            "description": "Output HDMI1 Clock Negative",
+            "class": "hdmi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 17,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 16,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 16,
+            "dir": "w"
+        },
+        {
+            "name": "USB3-1-TX_N ",
+            "description": "USB3 Port 1 TX output negative NB AC coupling capacitor included on CM5",
+            "class": "usb3",
+            "controller_id": "1",
+            "col": 1,
+            "row": 15,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_TX2_P",
+            "description": "Output HDMI0 TX2 Positive",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 15,
+            "dir": "w"
+        },
+        {
+            "name": "USB3-1-TX_P",
+            "description": "USB3 Port 1 TX output positive NB AC coupling capacitor included on CM5",
+            "class": "usb3",
+            "controller_id": "1",
+            "col": 1,
+            "row": 14,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_TX2_N",
+            "description": "Output HDMI0 TX2 Negative",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 14,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 13,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 13,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI1_D0_N",
+            "description": "MIPI1 D0 negative",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 12,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_TX1_P",
+            "description": "Output HDMI0 TX1 Positive",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 12,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI1_D0_P",
+            "description": "MIPI1 D0 positive",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 11,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_TX1_N",
+            "description": "Output HDMI0 TX1 Negative",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 11,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 10,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 10,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI1_D1_N",
+            "description": "MIPI1 D1 negative",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 9,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_TX0_P",
+            "description": "Output HDMI0 TX0 Positive",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 9,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI1_D1_P",
+            "description": "MIPI1 D1 positive",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 8,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_TX0_N",
+            "description": "Output HDMI0 TX0 Negative",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 8,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 7,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 7,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI1_C_N",
+            "description": "MIPI1 clock negative",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 6,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_CLK_P",
+            "description": "Output HDMI0 Clock Positive",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 6,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI1_C_P",
+            "description": "MIPI1 clock positive",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 5,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_CLK_N",
+            "description": "Output HDMI0 Clock Negative",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 5,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 4,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 4,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI1_D2_N",
+            "description": "MIPI1 D2 negative",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 3,
+            "dir": "e"
+        },
+        {
+            "name": "MIPI1_D3_N",
+            "description": "MIPI1 D3 negative",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 3,
+            "dir": "w"
+        },
+        {
+            "name": "MIPI1_D2_P",
+            "description": "MIPI1 D2 positive",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 1,
+            "row": 2,
+            "dir": "e"
+        },
+        {
+            "name": "MIPI1_D3_P",
+            "description": "MIPI1 D3 positive",
+            "class": "mipi",
+            "controller_id": "1",
+            "col": 0,
+            "row": 2,
+            "dir": "w"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 1,
+            "row": 1,
+            "dir": "e"
+        },
+        {
+            "name": "GND",
+            "description": "Ground (0V)",
+            "class": "gnd",
+            "col": 0,
+            "row": 1,
+            "dir": "w"
+        },
+        {
+            "name": "HDMI0_SDA",
+            "description": "Bidirectional HDMI0 SDA Internally pulled up with a 1.8K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM5 by an on board HDMI05-CL02F3)",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 1,
+            "row": 0,
+            "dir": "e"
+        },
+        {
+            "name": "HDMI0_SCL",
+            "description": "Bidirectional HDMI0 SCL Internally pulled up with a 1.8K. 5V tolerant. (It can be connected directly to a HDMI connector a small amount of ESD protection is provided on the CM5 by an on board HDMI05-CL02F3)",
+            "class": "hdmi",
+            "controller_id": "0",
+            "col": 0,
+            "row": 0,
+            "dir": "w"
+        }
+    ]
+}
+

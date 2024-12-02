@@ -1,84 +1,146 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Raspberry Pi CM4 Pinout</title>
+        <title>Pinout Thingy</title>
         <link rel="stylesheet" href="pinout.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </head>
     
     <body>
 
-        <div id="title-bar">
-            <button onclick="toggleSidebar();" id="sidebar-toggle">☰</button>
-            <h3>Raspberry Pi CM4 Pinout</h3>
-        </div>
+        <div id="site-container">
 
-        <div id="pinout-container">
+            <div id="title-bar">
+                <button onclick="toggleSidebar();" id="sidebar-toggle" class="btn btn-info"><i class="bi bi-list"></i></button>
+                <h3 id="site-title">Pinout Thingy</h3>
 
-            <div id="sidebar">
-                
-                <!-- function filter table -->
-                <table id="function-filter">
-                    <tr>
-                        <td id="function-filter-title"><b>Filter by function</b></td>
-                    </tr>
-                </table><br>
-                
-                <!-- peripheral controller filter table -->
-                <div id="controller-filter-container">
-                    <table id="controller-filter">
-                        <tr>
-                            <td id="controller-filter-title"><b>Filter by controller</b></td>
-                        </tr>
-                    </table><br>
-                </div>
-                
-                <!-- signal search -->
-                <input id="signal-search" placeholder="Search for signal">&nbsp;<button id="signal-search-btn" onclick="signalSearch();">Go</button>
-                <br><br>
-                
-                <!-- selected pin details -->
-                <div id="selected-pin-details">
-                    
-                    <h2 id="selected-pin-name"></h2>
-                    <p id="selected-pin-description">Click on a pin to see details about it, or click on one of the functions above to see which pins support it.</p>
-                
-                    <div id="alt-function-container">
-                        <h3 id="alt-function-title">Alternate Functions</h3>
-                        <table id="alt-function-table">
-                            <tr>
-                                <td></td>
-                                <td><b>Signal</b></td>
-                                <td><b>Description</b></td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <br>
-                    <h2>About</h2>
-                    <p>
-                        Created by atctwo in 2022 :)
-                        <br>
-                        Sources used:
-                        <ul>
-                            <li><a href="https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf">CM4 Datasheet</a></li>
-                            <li><a href="https://elinux.org/RPi_BCM2711_GPIOs">eLinux.org BCM2711 GPIO Reference</a></li>
-                        </ul>
-                        <br>
-                        If you see an error, or have any other suggestions, raise an issue on <a href="https://github.com/atctwo/pinout">GitHub</a>!
-                    </p>
-                    
+                <div class="dropdown" id="header-colour-select-dropdown">
+                    <button class="btn dropdown-toggle" id="header-color-select-btn" type="button" data-bs-toggle="dropdown" data-bs-theme="light" aria-expanded="false" aria-label="Select Colour Mode">
+                        <i class="bi bi-brightness-alt-high-fill"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><h6 class="dropdown-header">Colour Mode</h6></li>
+                        <li><a class="dropdown-item" onclick="set_colour_mode('light');" href="#"><i class="bi bi-brightness-high-fill"></i> Light</a></li>
+                        <li><a class="dropdown-item" onclick="set_colour_mode('dark');" href="#"><i class="bi bi-moon-stars-fill"></i> Dark</a></li>
+                        <li><a class="dropdown-item" onclick="set_colour_mode('auto');" href="#"><i class="bi bi-brightness-alt-high-fill"></i> Automatic</a></li>
+                    </ul>
                 </div>
             </div>
-            
-            <div class="table-container">
-                <table class="pin-header" id="pin-header-1"></table>
-                <table class="pin-header" id="pin-header-0"></table>
+
+            <div id="not-title-bar-container">
+
+                <div id="sidebar">
+                        
+                    <div id="sidebar-tools">
+
+                        <div><a href="?"><em>Back to device list</em></a></div><br>
+                        <img id="sidebar-device-image">
+                        <h2 id="sidebar-device-name"></h2>
+
+                        <!-- function filter table -->
+                        <table id="function-filter">
+                            <tr>
+                                <td id="function-filter-title"><b>Filter by function</b></td>
+                            </tr>
+                        </table><br>
+                        
+                        <!-- peripheral controller filter table -->
+                        <div id="controller-filter-container">
+                            <table id="controller-filter">
+                                <tr>
+                                    <td id="controller-filter-title"><b>Filter by controller</b></td>
+                                </tr>
+                            </table><br>
+                        </div>
+                        
+                        <!-- signal search -->
+                        <div class="input-group flex-nowrap">
+                            <input id="signal-search" class="form-control" placeholder="Search for signal">
+                            <button id="signal-search-btn" class="btn btn-primary" onclick="signalSearch();">Go</button>
+                        </div>
+                        <br>
+                        
+                        <!-- selected pin details -->
+                        <div id="selected-pin-details">
+                            
+                            <h2 id="selected-pin-name"></h2>
+                            <p id="selected-pin-description">Click on a pin to see details about it, or click on one of the functions above to see which pins support it.</p>
+                        
+                            <div id="alt-function-container">
+                                <h3 id="alt-function-title">Alternate Functions</h3>
+                                <table id="alt-function-table">
+                                    <tr>
+                                        <td></td>
+                                        <td><b>Signal</b></td>
+                                        <td><b>Description</b></td>
+                                    </tr>
+                                </table>
+                                <br>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="sidebar-description">
+                        <h2>Device Info</h2>
+                        <p id="sidebar-desc"></p>
+                    </div>
+
+                    <div id="sidebar-about">
+                        <h2>About</h2>
+                        <p>Made by <a href="https://atctwo.net">atctwo</a>, from 2022 - 2024!</p>
+                        <p>If you see an error, or have any other suggestions, raise an issue on <a href="https://github.com/atctwo/pinout">GitHub</a>!</p>
+                    </div>
+                </div>
+
+                <div id="pinout-container">
+
+                    <div id="loading-container">
+                        <div class="spinny">
+                            <h1>Pinout Thingy!</h1>
+                            <h2><em>Loading...</em></h2>
+                        </div>
+                    </div>
+
+                    <div id="error-container">
+                        <h1>Error loading device :(</h1>
+                        <p id="error-info"></p>
+                        <div id="error-code" class="alert alert-danger">
+                            <code id="error-msg"></code>
+                        </div>
+                    </div>
+
+                    <div id="welcome-container">
+                        <h1>Welcome to Pinout Thingy!</h1>
+                        <div class="container-md">
+                            <p>
+                                <em>Pinout Thingy</em> is an interactive pinout tool, allowing you to explore the pin definitions of a number of electronic
+                                devices!  After selecting a device, you can click on each pin to get more info about the pin and it's alternate functions,
+                                and you can filter pins by function!
+                            </p>
+                            <p>Which device do you want to view the pinout of?</p>
+                        </div>
+                        <div id="device-list" class="welcome-device-list"></div>
+                    </div>
+                    
+                    <div id="table-container" class="table-container">
+                        <div id="table-container-inner" class="table-container">
+                            <table class="pin-header" id="pin-header-0"></table>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
     </body>
     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-    <script src="pins.js"></script>
+    <script src="colourmode.js"></script>
     <script src="pinout.js"></script>
+    <script src="main.js"></script>
 </html>

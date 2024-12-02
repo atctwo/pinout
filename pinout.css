@@ -1,9 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Varela+Round&display=swap');
+
 * {
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Nunito", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Varela Round", sans-serif;
 }
   
-body { margin: 0; padding: 0; }
+html, body { 
+    margin: 0; 
+    padding: 0; 
+    width: 100%;
+    height: 100%;
+}
   
 /* Create a two-column layout */
 .column {
@@ -21,31 +32,42 @@ body { margin: 0; padding: 0; }
 
 
 
+#site-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
 
+#not-title-bar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
 
 #title-bar {
-    width: 100%;
-    height: 40px;
-    margin-top: 0;
-
     color: white;
     background-color: #009052;
     text-align: center;
-    line-height: 40px;
+    line-height: 50px;
+    padding: 0px 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#site-title {
+    margin: 5px;
 }
 
 #sidebar-toggle {
-    border: 2px solid white;
-    border-radius: 5px;
-    color: white;
-    background-color: transparent;
 
     width: 32px;
     height: 32px;
+    padding: 0px !important;
 
-    position: absolute;
-    top: 3px;
-    left: 5px;
 }
 #sidebar-toggle:hover {
     border-color: lightgray;
@@ -53,37 +75,46 @@ body { margin: 0; padding: 0; }
 
 
 #pinout-container {
+    flex: 1;
     display: flex;
     flex-direction: row;
     /* flex-wrap: wrap; */
     justify-content: flex-start;
-    width: 100%;
-    height: calc(100% - 40px);
+    background-color: var(--bs-body-bg);
+    transition: background-color 0.2s;
+}
+
+#table-container {
+    
+    overflow: auto;
+    padding: 20px;
+    
+    /* flex stuff for self */
+    flex: 1;
+    
+    /* will be unhidden when device json loads */
+    display: none;
 }
 
 .table-container {
-
-    height: 100%;
-    overflow-y: scroll;
+    /* overflow: auto; */
 
     /* flex stuff for children */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
-
-    /* flex stuff for self */
-    flex: 1;
 }
 
 #sidebar {
-    width: 20%;
-    height: 100%;
+    width: 350px;
+    padding: 10px;
+
     /* border-right: 1px solid black; */
     text-align: center;
-    padding: 5px;
     overflow-y: scroll;
-    position: sticky;
+    background-color: var(--bs-secondary-bg);
+    transition: background-color 0.2s;
 }
 
 @media screen and (max-width: 900px) {
@@ -97,14 +128,89 @@ body { margin: 0; padding: 0; }
     }
 }
 
+#sidebar-tools {
+    display: none;
+}
+
+#sidebar-device-name {
+    margin: 15px 0;
+}
+
+#sidebar-device-image {
+    width: 50%;
+}
+
+#sidebar-about {
+    text-align: left;
+}
+
+#sidebar-description {
+    display: none;
+    text-align: left;
+}
+
+#welcome-container {
+    display: none;
+    padding: 20px;
+}
+
+#error-container {
+    display: none;
+    padding: 20px;
+}
+
+#loading-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinny {
+    animation: spinny 10s ease-in-out 0s infinite;
+}
+@keyframes spinny {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.welcome-device-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.welcome-device {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+.welcome-device:hover {
+    background-color: var(--bs-secondary-bg);
+}
+
+.welcome-device-img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+
 .pin-header {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .pin-number {
+    display: inline-block;
     text-align: center;
-    width: 3em;
+    padding: 4px;
+    margin: 5px;
+    background-color: #cacaca80;
+    border-radius: 5px;
 }
 
 table, td, th {
@@ -146,13 +252,17 @@ table {
 
 
 
-#signal-search {
+/* #signal-search {
     width: 80%;
     height: 25px;
 }
 #signal-search-btn {
     width: 15%;
     height: 25px;
+} */
+
+#selected-pin-name {
+    font-family: "IBM Sans Mono", monospace;
 }
 
 #selected-pin-details {
@@ -168,10 +278,17 @@ table {
     margin: auto;
 }
 
+.alt-pin-name {
+    font-family: "IBM Sans Mono", monospace;
+}
 
 
 *[class^="pin-class-"], *[class*=" pin-class-"] {
     cursor: pointer;
+}
+
+.pin-name {
+    font-family: "IBM Sans Mono", monospace;
 }
 
 .pin-name:hover {
@@ -182,118 +299,10 @@ table {
     opacity: 0.2;
 }
 
-.pin-class-gnd {
-    color: white;
-    background-color: black;
+.pin-dir-e {
+    text-align: left;
 }
-
-.pin-class-power {
-    color: white;
-    background-color: red;
-}
-
-.pin-class-gpio {
-    color: black;
-    background-color: aliceblue;
-}
-
-.pin-class-gpclk {
-    color: black;
-    background-color: #00FFFF;
-}
-
-.pin-class-ethernet {
-    color: white;
-    background-color: green;
-}
-
-.pin-class-i2c {
-    color: black;
-    background-color: #FF00FF;
-}
-
-.pin-class-i2c.hat-i2c {
-    color: black;
-    background-color: orange;
-}
-
-.pin-class-spi {
-    color: black;
-    background-color: #FF99CC;
-}
-
-.pin-class-usb {
-    color: white;
-    background: linear-gradient(90deg, rgba(239,54,62,1) 0%, rgba(0,80,148,1) 100%);;
-}
-
-.pin-class-pwm {
-    color: black;
-    background-color: #99CCFF;
-}
-
-.pin-class-pcm {
-    color: black;
-    background-color: #99CC00;
-}
-
-.pin-class-smi {
-    color: white;
-    background-color: #3265FF;
-}
-
-.pin-class-uart {
-    color: white;
-    background-color: #FF0000;
-}
-
-.pin-class-pcie {
-    color: white;
-    background-color: rgb(0, 0, 77);
-}
-
-.pin-class-rpi {
-    color: white;
-    background-color: #C95767;
-}
-
-.pin-class-jtag {
-    color: black;
-    background-color: #BFBFBF;
-}
-
-.pin-class-dpi {
-    color: black;
-    background-color: #FFFF00;
-}
-
-.pin-class-dsi {
-    color: black;
-    background-color: lightgreen;
-}
-
-.pin-class-hdmi {
-    color: white;
-    background-color: purple;
-}
-
-.pin-class-tv {
-    color: black;
-    background-color: #ffff92;
-}
-
-.pin-class-sdio {
-    color: black;
-    background-color: #32CCCC;
-}
-
-.pin-class-csi {
-    color: black;
-    background-color: lightpink;
-}
-
-.pin-class-reserved {
-    color: black;
-    background-color: #4F6227;
+.pin-dir-w {
+    text-align: right;
 }
 
