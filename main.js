@@ -84,7 +84,7 @@ window.onload = () => {
             name.classList.add("welcome-device-name", "card-title");
             
             let a = document.createElement("a");
-            a.href = "/?device=" + dev_id;
+            a.href = "?device=" + dev_id;
             a.classList.add("stretched-link");
 
             div.append(img);
