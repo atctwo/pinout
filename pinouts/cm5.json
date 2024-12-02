@@ -113,8 +113,7 @@
                 { "name": "0" },
                 { "name": "1" },
                 { "name": "2" },
-                { "name": "3" },
-                { "name": "4" }
+                { "name": "3" }
             ],
             "color": "black",
             "background-color": "#FF00FF",
@@ -125,6 +124,11 @@
             "name": "I2S",
             "description": "Inter-IC Sound",
             "detailed_description": "PCM-based interface for moving high quality multi-channel digital audio",
+            "controllers": [
+                { "name": "I2S0 (controller)", "id": "0" },
+                { "name": "I2S1 (target)", "id": "1" }
+            ],
+            "filter_direction": "vertical",
             "color": "white",
             "background-color": "#3263F0",
             "row": 4,
@@ -264,19 +268,6 @@
             "color": "white",
             "background-color": "purple",
             "row": 10,
-            "col": 1
-        },
-        {
-            "name": "DSI", 
-            "description": "Display Serial Interface",
-            "detailed_description": "Serial interface for controlling LCD displays (like the <a href='https://www.raspberrypi.com/documentation/accessories/display.html'>official Touch display</a>).",
-            "controllers": [
-                { "name": "0" },
-                { "name": "1" }
-            ],
-            "color": "black",
-            "background-color": "lightgreen",
-            "row": 11,
             "col": 1
         },
         {
@@ -1745,7 +1736,7 @@
                     "class": "audio_in"
                 },
                 {
-                    "name": "`I2S1_SDO`[3]",
+                    "name": "I2S1_SDO[3]",
                     "description": "I2S 1 Data Out 3",
                     "class": "i2s",
                     "controller_id": "1"
