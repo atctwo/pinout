@@ -84,7 +84,7 @@ html, body {
     transition: background-color 0.2s;
 }
 
-.table-container {
+#table-container {
     
     overflow: auto;
     padding: 20px;

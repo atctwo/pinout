@@ -13,7 +13,7 @@
         <div id="site-container">
 
             <div id="title-bar">
-                <button onclick="toggleSidebar();" id="sidebar-toggle" class="btn btn-primary"><i class="bi bi-list"></i></button>
+                <button onclick="toggleSidebar();" id="sidebar-toggle" class="btn btn-info"><i class="bi bi-list"></i></button>
                 <h3 id="site-title">Pinout Thingy</h3>
 
                 <div class="dropdown" id="header-colour-select-dropdown">
@@ -113,11 +113,16 @@
                     </div>
 
                     <div id="welcome-container">
-                        <h1>Welcome to pinout thingy!</h1>
-                        <p>
-                            Which device do you want to view the pinout of?
-                            <div id="device-list" class="welcome-device-list"></div>
-                        </p>
+                        <h1>Welcome to Pinout Thingy!</h1>
+                        <div class="container-md">
+                            <p>
+                                <em>Pinout Thingy</em> is an interactive pinout tool, allowing you to explore the pin definitions of a number of electronic
+                                devices!  After selecting a device, you can click on each pin to get more info about the pin and it's alternate functions,
+                                and you can filter pins by function!
+                            </p>
+                            <p>Which device do you want to view the pinout of?</p>
+                        </div>
+                        <div id="device-list" class="welcome-device-list"></div>
                     </div>
                     
                     <div id="table-container" class="table-container">

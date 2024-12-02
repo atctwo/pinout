@@ -1,5 +1,5 @@
 # Pinout Thingy
-Hi!  *Pinout Thingy* is an interactive pinout tool.  You can click on each pin to get more info about the pin and it's alternate functions, and you can filter pins by function!
+Hi!  *Pinout Thingy* is an interactive pinout tool, allowing you to explore the pin definitions of a number of electronic devices!  You can click on each pin to get more info about the pin and it's alternate functions, and you can filter pins by function!
 
 Originally it only showed the pinout for the Raspberry Pi Compute Module 4, but since the CM5 came out it can show the pinouts of multiple devices!  (Well, ok, for now it's just the CM4 and CM5.  But now that _it can_ show more than one pinout I have an excuse to add additional devices...)
 
@@ -23,6 +23,11 @@ A live version of the webpage can be found at [atctwo.net/projects/pinout](https
     <li><a href="https://atctwo.net/projects/pinout?device=cm5">Raspberry Pi Compute Module 5</a></li>
 </ul>
 </details>
+
+# Building
+This entire project is written with vanilla JS, and all the code is client-side, so there isn't actually anything to build.  Although since device manifests are fetched dynamically, the site does need to be hosted using an HTTP(s) server for it to work.  I usually use Python's `http.server` for development since it's easy, but you can use any server of your choice.
+
+The live version of this site is deployed using GitHub Pages.  This repo is included as a submodule on the repo for atctwo.net, and is pulled in each time atctwo.net is updated.
 
 # Credits
 Sources for data on each pinout are contained within the device manifests, and are shown on the device page in the sidebar.
