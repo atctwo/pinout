@@ -1446,7 +1446,7 @@
                     "class": "pio"
                 },
                 {
-                    "name": "SPI1_CSn[3]",
+                    "name": "SPI3_CSn[1]",
                     "description": "SPI3 Chip Select 1",
                     "class": "spi",
                     "controller_id": "3"
